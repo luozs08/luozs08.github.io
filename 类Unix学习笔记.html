@@ -1,0 +1,3321 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=yes"/>
+    <link href="/main.css" rel="stylesheet" type="text/css">
+    <link href="/codehighlight.css" rel="stylesheet" type="text/css">
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="Atom feed">
+    <link rel="shortcut icon" href="/images/logo.bmp">
+    <title></title>
+</head>
+<body>
+  <div class="content">
+  <h1>Unix&amp;Linux 大学教程学习笔记</h1>
+
+<h2>一、选择自己的Unix</h2>
+
+<p><em>2012-08-05 17:34:34</em></p>
+
+<h3>1. 选择自己的Unix</h3>
+
+<p>（1）如果使用Unix是因为您希望学习它如何运转，如何定制工作环境，如何编程或者只是为了寻找乐趣，那么您可以使用Linux:</p>
+
+<p>| | | | |
+|----|----|----|----|
+|Debian|Fedora Core|Gentoo|Knoppix|
+|Mandriva|MEPIS|Red Hat|Slackware|
+|SuSE|Ubuntu|Xandros| |</p>
+
+<p>如果您无法确定使用哪一种Linux，可以使用Ubuntu。</p>
+
+<p>（2）FreeBSD非常稳定和可靠，并且基本上即装即用。 </p>
+
+<p>如果系统不支持FreeBSD，可以使用NetBSD。如果对安全非常感兴趣，可以使用Open BSD。  </p>
+
+<p>（3）如果希望在Microsoft Windows下运行Unix，那么可以使用一个免费产品Cygwin。 </p>
+
+<p>（4）Live CD选择:</p>
+
+<p>| | | |
+|----|----|----|----|
+|FreeBSD|Kanofix|Knoppix|
+|MEPIS|PC Linux OS|SLAX|SuSE|Ubuntu|</p>
+
+<p>如果不能确定使用哪一种Live CD，推荐使用Knoppix。 </p>
+
+<p>（5）SSH (secure shell) </p>
+
+<p>为了仿真一个X-Window图形终端，可以使用ssh –X命令。 </p>
+
+<h3>2. 注销：login、exit、login</h3>
+
+<p>（1）组合键 </p>
+
+<p>当按下组合键时，它将发送一个eof或者”end-of-file”信号。实质上，这是告诉Shell不会再有数据了。然后Shell终止，Unix将注销。 </p>
+
+<p>您稍后还会发现，end-of-file还有其他应用，您完全有可能经常按下组合键，不经意将自己注销。 </p>
+
+<p>基于这一原因，Unix系统提供了一种防护措施。大多数shell定义了一种方式，用来指定不希望通过组合键来注销系统。相反，您必须输入一个特殊的命令。 </p>
+
+<p>（2）logout </p>
+
+<p>（3）exit </p>
+
+<p>（4）login </p>
+
+<p>在一些系统上，login命令并不能让您完全脱离系统。这时login将临时改变用户标识，但是您仍然可以以原始名称处于登录状态。当新用户注销时，他将回到您的原始会话中。 </p>
+
+<p>实际上，用户标识习惯上只使用小写字母。 </p>
+
+<h3>3. 改变口令：passwd</h3>
+
+<h3>4. 检查他人是否用过您的Unix帐户：last</h3>
+
+<p>last 用户名 </p>
+
+<h3>5. 选择Gnome还是KDE</h3>
+
+<p>Gnome用户倾向于简单和条理。他们希望事情有逻辑。 </p>
+
+<p>Gnome用户赞同下述格言：“Form ever follows function. (形式永远追随功能。)”这是美国建筑师Louis Sullivan于1896年提出的一个思想。Sullivan观察到自然对象的外观受他们功能的影响。 </p>
+
+<p>Gnome用户喜欢控制事情如何运转，而KDE用户喜欢控制事物的外观。 </p>
+
+<p>KDE用户认为这个世界事一个充满色彩、变化，而且有时还充满迷惑的场所。他们倾向于让生活顺其自然，而不是花费大量的时间来修复小的细节。当受到激发投入时间定制自己的工作环境时，他们倾向于使事情更好看，动作更漂亮。 </p>
+
+<h3>6. 帮助他人选择计算机的原则</h3>
+
+<p>祖母机器：当建立起一台祖母机器时，必须意识到您将承担起永久的责任，因为无论何时，当你的祖母遇到问题时，她都会叫你。因此应当使用那些可靠的、容易安装并且容易升级的软件。您还希望配置这个系统，从而方便初学者访问网络，查看电子邮件及(在一些情况下)使用字处理软件、电子表格、表示图形等。推荐：Ubuntu Linux, Gnome, Firefox, Open office. </p>
+
+<p>当您为他人选择计算机时，基于“硬件需求”的建议通常并不好用。有效的方法就是基于他们的心理需求选择系统。 </p>
+
+<h2>二、Unix工作环境</h2>
+
+<p><em>2012-08-05 17:54:32</em></p>
+
+<h3>1. 快捷键</h3>
+
+<p>GUI的一个标准功能。组合键<code>&lt;Alt-F&gt;</code>显示File菜单，组合键<code>&lt;Alt-E&gt;</code>显示Edit菜单，组合键<code>&lt;Alt-H&gt;</code>显示Help菜单。</p>
+
+<h3>2. 运行级别（对FreeBSD不适用）：runlevel或runtime level</h3>
+
+<p>0       停机（关机）</p>
+
+<p>1       单用户模式：命令行</p>
+
+<p>2       非标准化</p>
+
+<p>3       多用户模式：命令行</p>
+
+<p>4       非标准化</p>
+
+<p>5       多用户模式：GUI</p>
+
+<p>6       重新启动</p>
+
+<p>默认引导运行级别3或运行级别5</p>
+
+<p>修改运行级别：（从5到3）</p>
+
+<p>将/etc/inittab中的init default的值修改为3，使系统自动启动到运行级别3。然后在rc3.d目录中检查符号链接，确保GUI没有在这一级别中自动启动。</p>
+
+<p>在运行级别3上使用CLI，如果希望启动GUI，可有startx命令。</p>
+
+<h3>3. 切换任务</h3>
+
+<p>组合键<code>&lt;Alt-Tab&gt;</code></p>
+
+<p>组合键<code>&lt;Alt-Shift-Tab&gt;</code></p>
+
+<h3>4.桌面切换快捷键</h3>
+
+<p>KDE：<code>&lt;Ctrl-Tab&gt;</code>和<code>&lt;Ctrl-Shift-Tab&gt;</code></p>
+
+<p>Gnome：<Ctrl-Alt-方向键&gt;</p>
+
+<h3>5. CLI标签切换</h3>
+
+<p>如果在一个窗口中运行多个CLI会话，每个会话都拥有自己的标签。然后您可以通过使用快捷键<Shift-方向键&gt;以一个会话切换到另一个会话。</p>
+
+<p>如果系统中有的话，使用Konsole。</p>
+
+<h3>6. 虚拟控制台切换</h3>
+
+<p>切换到虚拟控制台#1<code>&lt;Ctrl-Alt-F1&gt;</code></p>
+
+<p>虚拟控制台#1-#6的切换可使用组合键<code>&lt;Ctrl-Alt-Fn&gt;</code>（n=1,2,3,4,5,6）</p>
+
+<h3>7. X window的选择与插入文本</h3>
+
+<p>只针对字符。</p>
+
+<p>首先，用鼠标选择一些文本。然后移动鼠标到希望插入文本的地方，按下鼠标中键。如果没有中间键，可以同时单击鼠标的左键和右键。</p>
+
+<p>选择文本时，首先将鼠标指针定位于希望选择文本的开始处。然后按住鼠标左键不放，在文本上拖动指针。在拖动指针的过程中，选中的文本会亮亮显示。</p>
+
+<p>另外，您还可以以另外两种方式选择文本。如果双击鼠标，则会选中一个单词；如果三击鼠标，则会选中整行文本。</p>
+
+<h3>8. 浏览配置文件</h3>
+
+<p><code>less</code> <em>文件名</em></p>
+
+<p>一旦less启动，它将向您显示第一屏的信息。如果向前移动，可以按键；向后移动，按键；查看帮助，按键；退出less，按键。</p>
+
+<p>常见的配置文件：</p>
+
+<p><code>/boot/grub/menulst</code>：关于计算机可以引导的操作系统和信息；</p>
+
+<p><code>/etc/hosts</code>：系统已知的一列主机名称和IP地址；</p>
+
+<p><code>/etc/inittab</code>：不同运行级别的定义；</p>
+
+<p><code>/etc/passwd</code>：每个用户标识的基本信息（实际口令是加密的，而且保存在其他地方）。</p>
+
+<p><code>/etc/profile</code>：当一个用户标识登录时，系统自动执行的命令；</p>
+
+<p><code>/etc/samba/smb.conf</code>：Samba的配置信息。Samba是一个允许Unix系统和Windows系统共享文件和打印机的工具。</p>
+
+<h3>9. 系统的关闭与重启：init、reboot、shutdown</h3>
+
+<p>关闭：</p>
+
+<p><code>sudo init 0</code></p>
+
+<p><code>sudo shutdown now</code></p>
+
+<p>重启：</p>
+
+<p><code>sudo init 6</code></p>
+
+<p><code>sudo reboot</code></p>
+
+<h3>10. 系统启动或停止时发生了什么事情：dmesg</h3>
+
+<p>命令：<code>dmesg | less</code></p>
+
+<h2>三、Unix键盘使用</h2>
+
+<p><em>2012-08-06 10:43:48</em></p>
+
+<h3>1.修饰键：<code>&lt;Ctrl&gt;</code>键</h3>
+
+<p>因为一遍又一遍的写"Ctrl"不方便，所以Unix社区使用一种简写表示方法：字符^（插入记号）。当看到这个字符后面有另一个字符时，它表示“按键”。例如^A意味着按住键并按下A键。另外，还有或C-a等表示方法，它们的含义都相同</p>
+
+<p>根据约定，在写组合键时通常使用大写字母。……但是它并不是一个真正的大写字母。因此，当使用组合键时，并不需要按下键。</p>
+
+<p>键是所谓修饰键的一个例子。修饰键指按住这个键的时候再去按另一个键。</p>
+
+<p>在标准的PC键盘上，修饰键有<code>&lt;Shift&gt;</code>、<code>&lt;Alt&gt;</code>、<code>&lt;Ctrl&gt;</code>。<code>&lt;Alt&gt;</code>是最新的修饰键，只有GUI使用。</p>
+
+<h3>2. 键入过程中使用的信号：erase、werase、kill</h3>
+
+<p>erase删除最后一个字符，werase删除最后一个键入的单词，而kill则删除整行。</p>
+
+<p>按下或者键（取决于键盘及其映射）通常可以发送erase信号。</p>
+
+<p>对于大多数终端和PC来说，使用的是<code>•&lt;Backspace&gt;</code>•键，而对于Macintosh来说，使用的是<code>&lt;Delete&gt;</code>键。</p>
+
+<p>erase        还对应              ^H</p>
+
+<p>werase                              ^W</p>
+
+<p>kill                                     ^X或者^U（取决于系统如何设置）</p>
+
+<p><strong>重要的是意识到PC机键盘上的<code>&lt;Delete&gt;</code>键和旧终端、Macintosh机上的<code>&lt;Delete&gt;</code>键并不相同。</strong></p>
+
+<h3>3. intr信号</h3>
+
+<p>intr（interrupt，中断）的信号可以终止进程的运行。</p>
+
+<p>对于大多数终端来说，^C(Ctrl-C)键映射到intr信号上，但也有少数终端将键映射到intr信号。</p>
+
+<h3>4. 另一种停止程序的方法：quit</h3>
+
+<p>quit键通常是^\ (反斜线)</p>
+
+<p>quit                     ^\</p>
+
+<h3>5. 暂停显示：stop、start</h3>
+
+<p>如果程序生成输出太快，那么数据在阅读之前就滚动出屏幕了。这时有3种选择：（1）如果不重要的数据，可忽略；（2）使用less或more命令；（3）发送stop信号，这个信号告诉Unix临时停止屏幕显示。一旦显示过程暂停，您可以按下^Q发送start信号重新启动屏幕显示。这两个信号容易记住，即”S”代表Stop，”Q”代表Quntinue（也就是Continue）。</p>
+
+<p>^S和^D的使用相当便利。但是，^S只是告诉Unix停止输出的显示。它不会暂停正在执行的程序。程序继续执行，不会停止生成输出。</p>
+
+<h3>6. 文件结束信号：eof</h3>
+
+<p>有时候，您使用的程序希望您以键盘输入数据。当数据输入完，没有数据再输入时，可以通过^D发送eof(end of file)信号指示这一点。</p>
+
+<p>一般情况下，程序会终止。如果是shell界面，会注销。为防止在shell下，不小心注销，可以告诉shell封闭eof信号。</p>
+
+<h3>7. 关闭eof信号</h3>
+
+<ul>
+<li>Bash（Linux默认Shell）</li>
+</ul>
+
+<p>使用IGNOREEOF的环境变量，如<code>INNOREEOF=5</code>（数字用来指定在注销以前Bash会忽略特定行开头的^D多少次。）</p>
+
+<p>如需IGNOREEOF，则可运行<code>IGNOREEOF=0</code></p>
+
+<p>显示IGNOREEOF的当前值，使用下述命令：</p>
+
+<p><code>echo $IGNOREEOF</code></p>
+
+<p>为了在每次登录时自动设置IGNOREEOF，需要在.profile文件中放置一条命令。</p>
+
+<ul>
+<li>Korn Shell</li>
+</ul>
+
+<p><code>set -o ignoreeof</code>     （关闭eof信号）</p>
+
+<p><code>set -o ignoreeof</code>      （不关闭eof信号）</p>
+
+<p><code>set -o</code>                           （查询）</p>
+
+<ul>
+<li>C-Shell</li>
+</ul>
+
+<p><code>set ignoreeof</code></p>
+
+<p><code>unset ignoreeof</code></p>
+
+<p><code>echo $ignoreeof</code>       （查询）</p>
+
+<h3>8. 显示键映射：stty -a</h3>
+
+<p><code>stty -a</code></p>
+
+<p>stty是”set terminal”命令，-a意味着“显示所有的设置”。</p>
+
+<h3>9. 修改键映射：stty</h3>
+
+<p>stty 信号名 赋值</p>
+
+<p>如 stty kill ^U</p>
+
+<p>重点在于一定要确保以两个单独的字符的形式键入键组合，而不是用一个真正的组合键。stty会认出其中一个字符代表键。 </p>
+
+<h3>10. 返回和换行</h3>
+
+<p>Unix使用两个基于老式Teletype的信号：返回和换行。</p>
+
+<p>第一个代码是CR（carriage return，托架返回）将托架返回到最左边的位置上。第二个代码是LF（linefeed，换行）使打印纸向上移动一行。因此，序列CR-LF执行打印一个新行所需的准备动作。</p>
+
+<p>在键盘上，按下键或者^M（它们等价）可以发送一个CR码，按下或者^J键可以发送LF码。</p>
+
+<p>当Unix开发人员开始使用Teletype作为终端时，他们基于CR和LR码创建了两个信号。CR码变成了返回信号，LF码变成了换行信号。</p>
+
+<h3>11. 新行字符的重要性</h3>
+
+<ul>
+<li><p>返回字符= ^M</p></li>
+<li><p>换行字符=新行字符=^J</p></li>
+<li><p>一般而言，每行文本必须以一个新行字符结束；</p></li>
+<li><p>当按下键时，将发送一个返回字符，Unix自动将返回字符改变为新行字符；</p></li>
+<li><p>在终端显示数据时，每行必须以字符序列“返回+新行”结束。因此，当数据从文件发送到终端显示时，Unix自动将末尾的新行字符改变为“返回字符+新行字符”。在文本文件中，Unix使用^J(newline)字符标记每行结束。但是Microsoft Windows使用^M^J标记每行结束。</p></li>
+</ul>
+
+<h3>12. 恢复终端正常显示：stty sane、reset</h3>
+
+<p><code>stty sane</code></p>
+
+<p><code>reset</code></p>
+
+<h2>五、Unix手册与info</h2>
+
+<p><em>2012-08-07 22:27:20</em></p>
+
+<h3>1. 组织方式</h3>
+
+<p>1.命令</p>
+
+<p>2.系统调用</p>
+
+<p>3.库函数</p>
+
+<p>4.特殊文件</p>
+
+<p>5.文件格式</p>
+
+<p>6.游戏</p>
+
+<p>7.杂项信息</p>
+
+<p>8.系统管理</p>
+
+<p>手册中最重要的是第1节，该部分包含大量的Unix命令的说明书页。实际上，除非您是一名程序员或者系统管理员，否则您或许只需要了解手册的这一部分内容。</p>
+
+<h3>2. 在man命令中指定节号</h3>
+
+<p>man <em>节号</em> <em>命令</em></p>
+
+<p>man默认显示第1节的说明书页</p>
+
+<p>例：<code>man 2 kill</code></p>
+
+<p>如果使用的是一种派生于System V的Unix系统，那么命令的形式就有点不同；必须在节号前输入-s。例如，Solaris就是这种情况。例：man -s 2 kill</p>
+
+<p>为仅使您熟悉手册的各种不同部分，每个节和小节都包含一个称为intro的页面，该页面充当一个简介。一种熟悉本节内容的方法就是阅读它的intro页。例：man intro ; man 1 intro ; man 1c intro</p>
+
+<h3>3. 说明书页的格式</h3>
+
+<p>Name                命令的名称和用途</p>
+
+<p>Synopsis            命令语法</p>
+
+<p>Description      完整描述</p>
+
+<p>Environment    命令使用的环境变量</p>
+
+<p>Author               程序员的名字</p>
+
+<p>Files                    对该命令重要的文件列表</p>
+
+<p>See also             查看相关信息的位置</p>
+
+<p>Diagnostics      可能的错误和警告</p>
+
+<p>Bugs                   错误、缺点和警告</p>
+
+<h3>4. 快速查寻命令的方法：whatis</h3>
+
+<p>whatis命令显示Name节中包含的一行描述，同man -f</p>
+
+<h3>5. 搜索命令：apropos</h3>
+
+<p>man -k ：搜索Name节中包含特定关键字的命令。可用apropos代替。</p>
+
+<h3>6. info系统重要命令</h3>
+
+<p><code>&lt;PageDown&gt;</code>显示下一屏</p>
+
+<p><code>&lt;Space&gt;</code>显示上一屏</p>
+
+<p><code>&lt;Tab&gt;</code>将光标移动下一个链接</p>
+
+<p>n:进入一个链接</p>
+
+<p>d:跳转到目录节点</p>
+
+<p>l:跳转到已经访问的最后一个节点</p>
+
+<p>q:退出</p>
+
+<h2>六、命令语法</h2>
+
+<p><em>2012-08-07 22:30:01</em></p>
+
+<h3>1. 一次输入多条命令</h3>
+
+<p>使用分号将命令分隔，如：date ; cal</p>
+
+<h3>2. 命令语法</h3>
+
+<p>`<strong>命令名称</strong> <em>选项</em> <em>参数</em></p>
+
+<h3>3. 命令语法规则</h3>
+
+<p>1.方括号中的项是可选的；</p>
+
+<p>2.不在方括号中的项是必选的，必须作为命令的一部分输入；</p>
+
+<p>3.黑体字必须按原样准确输入；</p>
+
+<p>4.斜体字必须用适当的值代替；</p>
+
+<p>5.后面接省略号(…)的参数可以重复任意多次；</p>
+
+<p>6.如果一个单独的选项和一个参数组合在一起，选项和参数必须同时使用；</p>
+
+<p>7.由|(竖线)字符分开的两个或多个项，表示可以从这个列表中选择一个项。</p>
+
+<h2>七、使用shell：变量与选项</h2>
+
+<p><em>2012-08-08 18:17:54</em></p>
+
+<h3>1. 环境、进程和变量</h3>
+
+<p>在Unix系统中，每个对象都被表示为一个文件或进程。</p>
+
+<p>在进程运行过程中，它需要访问所谓的环境，即一组用来存放信息的变量。变量是一个用来存储数据的实体。每个变量有个名称和数值。</p>
+
+<p>变量名必须由大写字母、小写字母、数字或者下划线字符构成。变量名的第一个字符不能为数字。</p>
+
+<p>子进程继承父进程的环境。</p>
+
+<h3>2. 环境变量和shell变量</h3>
+
+<p>全局变量用大写字母，局部变量用小写字母。</p>
+
+<p>如果希望某个变量同时成为环境变量，必须使用一个称为export的特殊命令。</p>
+
+<h3>3. 显示环境变量：env、printenv</h3>
+
+<p>如果希望对输出进行排序，可以使用sort命令，例：</p>
+
+<p><code>env | sort | less</code></p>
+
+<p><code>printenv | sort | less</code></p>
+
+<h3>4. 显示shell变量：set</h3>
+
+<h3>5. 显示及使用变量的值：echo、print</h3>
+
+<p><code>echo ${变量名}</code></p>
+
+<p>echo 回显之后的字符串</p>
+
+<h3>6. 使用变量：export、unset( Bourne Shell家族)</h3>
+
+<p><code>NAME=value</code>    无空格. </p>
+
+<p>如果value中有空格键，需要引号，如：<code>WEEDLY="a cool cat"</code></p>
+
+<p><code>export NAME[=value]…</code>                     将变量导出到环境。</p>
+
+<p><code>unset NAME…</code>                            复位变量。 </p>
+
+<h3>7. shell选项：set -o, set o</h3>
+
+<p>set -o option; set o option</p>
+
+<h2>八、使用shell：命令与定制</h2>
+
+<p><em>2012-08-16 10:11:17</em></p>
+
+<h3>1. 元字符</h3>
+
+<p>当使用shell时，还有许多其他字符拥有特殊的含义，这种字符称为元字符。</p>
+
+<p>元字符包括：{ } | &lt; &gt; ( ) # ; ` ~ ? [ ] * ! &amp; \ ‘ “ $</p>
+
+<h3>2. 引用和转义</h3>
+
+<p>希望按字面上的含义使用元字符时，必须使用引用。字符的引用方法有3种：使用反斜线、使用一对单引号或者使用一对双引号。</p>
+
+<p>当使用反斜线时引用单个字符时，我们称反斜线为“转义字符(escape character)”，它告诉shell从一种模式改变到另一种模式。</p>
+
+<p>使用反斜线引用单个字符称为转义了这个字符，可转义新行字符。</p>
+
+<p>使用单引号引用一串字符。（强引用）</p>
+
+<p>使用双引号引用一串字符，但是保留了$ (美元符号)、` (反引号)、\ (反斜线)的特殊含义。</p>
+
+<h3>3. shell内置命令：type</h3>
+
+<p>shell决定如何处理命令，其可能性有两种。一些命令在shell的内部，这意味着shell可以直接解释它们。这些命令是内部命令，通常称为内置命令(builtin command，或者简称builtin)。其他所有命令是外部命令，即必须单独运行的程序。</p>
+
+<p>查看命令是否为shell内置命令的方法有两种。一是查看该命令的说明书页，内部命令无说明书页。二是使用type命令，语法为:<code>type command</code></p>
+
+<h3>3. 查看内部命令</h3>
+
+<p><code>man bash/ ksh/tcsh/csh</code></p>
+
+<p>一些Unix/Linux系统对于内置命令拥有独立的说明书页。使用apropos命令可以查看系统是不是属于这种情况: <code>apropos builtin</code></p>
+
+<p>如果系统上有这样的说明书页，那么它就是快速查看所有内置命令列表的地方。对于Linux和FreeBSD来说，可以使用: <code>man builtin</code></p>
+
+<p>对于Solaris，可使用: <code>man shell_builtins</code></p>
+
+<p>Linux还有一个help命令，可以以若干种方式显示builtin说明书页中的信息。该命令语法为: <code>help [-s] [command…]</code></p>
+
+<p>command是命令的名称，-s (syntax，语法)</p>
+
+<h3>5. 外部命令及搜索路径</h3>
+
+<p>shell从PATH环境变量查找外部命令，PATH包含一串字符，这串字符就是一系列目录名称，我们称之为搜索路径。</p>
+
+<p>显示PATH变量的值: <code>echo $PATH</code></p>
+
+<h3>6. 修改搜索路径</h3>
+
+<p>对于Bourne Shell家族：</p>
+
+<p><code>export PATH="/bin:/usr/bin:/usr/ucb:/usr/local/bin"</code></p>
+
+<p>对于C-Shell家族：</p>
+
+<p><code>set path=( /bin /usr/bin /usr/ucb /usr/local/bin)</code></p>
+
+<p>将家目录的bin放在搜索路径最后</p>
+
+<p><code>export PATH="$PATH:$HOME/bin"</code></p>
+
+<p><code>set path=($path $HOME/bin)</code></p>
+
+<p>将其插在开头：</p>
+
+<p><code>export PATH=”$HOME/bin:$PATH”</code></p>
+
+<p><code>set path=($HOME/bin $path)</code></p>
+
+<h3>7. 修改shell提示环境</h3>
+
+<p>修改一个PS1的变量即可。</p>
+
+<p>对于Bourne Shell，可以设置一个$字符加一个空格: </p>
+
+<p><code>export PS1=“$ ”</code></p>
+
+<p>对于C-Shell:</p>
+
+<p><code>set prompt="%"</code></p>
+
+<p>如果是Tcsh:</p>
+
+<p><code>set prompt="&gt;"</code></p>
+
+<h3>8. 引用变量使用哪类引号</h3>
+
+<p>当需要使用变量时，心里要想一想：“该变量的值在使用之前是否会变化？”</p>
+
+<p>如果答案是肯定的，则使用强引用，也就是单引号来防止$字符被解释，直至需要它们。否则，使用弱引用——双引号，从而允许$字符被立即解释。</p>
+
+<h3>9. 使用转义字符的特殊码</h3>
+
+<p><strong>只有Bash和Tcsh允许使用这种的特殊码。</strong></p>
+
+<p>Bash可使用的特殊码：</p>
+
+<p>工作目录：   ~表示法    \w</p>
+
+<p>工作目录：   只有基名       \W</p>
+
+<p>计算机主机名：           \h</p>
+
+<p>当前用户标识：           \u</p>
+
+<p>shell的名称：            \s</p>
+
+<p>时间：AM/PM表示法      \@</p>
+
+<p>时间：24小时制                 \A</p>
+
+<p>日期：                             \d</p>
+
+<p>历史列表：事件编号               \!</p>
+
+<p>例：在Bash提示中显示时间和日期</p>
+
+<p>`export PS1="\d \@ $ "</p>
+
+<p>两种有趣的变量RANDOM和SECONDS</p>
+
+<p><code>export PS1='Your lucky number is ${RANDOM} $</code> </p>
+
+<p><code>export PS1='Working time: ${SECONDS} $</code></p>
+
+<h3>10. 命令替换</h3>
+
+<p>命令替换允许在一条命令中嵌入另一条命令。shell首先执行嵌入的命令，并且输出替换该命令。然后，shell再执行整个命令。</p>
+
+<p>通过将一条命令封装在反引号 字符中，可以将它嵌入到另一条命令中，如：</p>
+
+<p><code>echo "The time and date are</code>date<code>."</code></p>
+
+<p>使用basename可以抽取任何路径名的最后一部分，它的目的是一条完整的路径名，并输出路径名的最后一部分。例：</p>
+
+<p><code>export PS1="</code>basename ${SHELL}<code>$ "</code></p>
+
+<p><code>export PS1="</code>whoami<code>$ "</code></p>
+
+<h3>11. 历史列表：fc、history</h3>
+
+<p>对于Bourne Shell家族，可以使用fc命令加上-l(列举) 显示历史列表，<code>fc -l</code></p>
+
+<p>对于C-shell家族，可以使用history命令：history</p>
+
+<p>通过事件编号也可以调取并执行特定的命令。对于Bourne Shell，可以使用-s替换选项的fc命令，后面跟事件编号，fc -s 24</p>
+
+<p>对于C-shell来说，该命令只需键入一个!字符后接事件编号，!24(无空格) </p>
+
+<p>重新执行上一条命令：</p>
+
+<p>fc -s  (Bourne Shell)</p>
+
+<p>!!      (C-shell)</p>
+
+<p>在重新执行命令前对命令进行小的修改：</p>
+
+<p><code>fc -s pattern=replacement number</code></p>
+
+<p><code>!number:s/pattern/replacement/</code></p>
+
+<p>在两种情况中，pattern和replacement指的是字符串，而number指的是事件编号。</p>
+
+<p>例如，事件编号25是用vi编辑tempfile文件的命令，再次运行时，想编辑data文件，则：</p>
+
+<p><code>fc -s tempfile=data 25</code></p>
+
+<p><code>!25:s/tempfile/data</code></p>
+
+<p>如果希望使用最近用过的命令，那么命令就比较简单。假如希望输入date，却不小心输成datq，而且将其运行。因此，您希望将q改成e，然后再重新执行这个命令。</p>
+
+<p>对于fc -s来说，如果不指定事件编号，默认为上一条命令：</p>
+
+<p><code>fs -s q=e</code></p>
+
+<p>对于C-shell，可以使用下述语法：</p>
+
+<p><code>^pattern^replacement</code></p>
+
+<p>如在本例中：<code>^q^e</code></p>
+
+<p>提示：Bash有两个优点，一是既可以用fc命令，也可以使用history/!系统。其次，Bash支持一个额外的我，即使用^R 可以认为它是重新调用键 。按^R键并键入一种模式，然后Bash将重新调用包含该模式的最后一条命令。例如，调用最近一条ls命令，可以按^R键，然后再键入ls。如果得到的命令并不是希望的命令，可以再次按下^R键，获得包含该模式的下一条最近的命令。</p>
+
+<p>名称fc代表“fix command, 修复命令”。这是因为当命令键入错误时，可以使用fc修改命令，然后再重新执行命令。</p>
+
+<h3>12. 历史列表：设置大小</h3>
+
+<p>Bourne Shell：历史文件将被自动保存和恢复</p>
+
+<p>C-shell：除非设置了shell变量savelist，否则将不会自动保存。</p>
+
+<p>设置历史记录大小：</p>
+
+<p><code>export HISTSIZE=50</code></p>
+
+<p><code>set history=50</code></p>
+
+<p>C-shell自动保存历史列表<code>set savelist=30</code></p>
+
+<h3>13. 在shell提示中显示事件编号和工作目录</h3>
+
+<p>显示事件编号：</p>
+
+<pre><code>
+export PS1=“bash[\!]$ ”
+
+export PS1=“ksh[!]$ ”
+
+set prompt=“csh[\!]% ”
+
+set prompt=“tcsh[%\!]&gt; ”
+
+</code></pre>
+
+<p>显示工作目录和事件编号</p>
+
+<pre><code>
+export PS1=“(\w) bash[\!]$ ”
+
+export PS1=“($PWD) ksh[!]$ ”
+
+set prompt=“(\$PWD) csh[\!]% ”
+
+set prompt=“(%~) tcsh[%\!]&gt; ”
+
+</code></pre>
+
+<h3>14. 别名：alias、unalias</h3>
+
+<p>别名就是赋予一条命令或者一列命令的名称。</p>
+
+<p>对于Bourne Shell，语法为：</p>
+
+<p><code>alias [name=commands]</code>         等号两边无空格</p>
+
+<p>对于C-shell，语法为：</p>
+
+<p><code>alias [name commands]</code></p>
+
+<p>例： <code>alias info=’date;who’</code>              alias info ‘date;who’</p>
+
+<p><code>alias a=alias</code>                                          alias a alias</p>
+
+<p>如果希望修改别名的含义，则只需重定义这个别名。</p>
+
+<p>显示所有的别名，可以输入没有参数的alias命令：<code>alias</code></p>
+
+<p>使用unalias命令可以移除别名，该命令的语法为： <code>unalias name</code></p>
+
+<p>有时，为了临时挂起别名(只针对一条命令)，只需在命令名称开关键入一条\反斜线 字符，如：</p>
+
+<p><code>\ls</code></p>
+
+<p>别名示例：1) 避免删错文件</p>
+
+<p>如要执行<code>rm temp* extra?</code>，先执行<code>ls temp* extra?</code>查看文件，避免删错，可使用<code>fc -s ls=rm</code></p>
+
+<p>为了更简单，可以定义一个del的别名:</p>
+
+<p><code>alias del='fc -s ls=rm'</code></p>
+
+<p>对于C-shell家族，使用<code>^ls^rm</code>。由于技术原因，这条命令不能使用别名。相反，需使用命令<code>rm !ls:*</code>  为了使这条命令更容易使用，可定义一个别名</p>
+
+<p><code>alias del ‘rm \!ls: ’</code></p>
+
+<p>别名示例：2)从历史列表中重用命令</p>
+
+<p>定义一个history的别名:</p>
+
+<p><code>alias history=”fc -l”</code></p>
+
+<p><code>alias h=history</code></p>
+
+<p>接下来定义别名r来取代fc -s，即从历史列表中调取命令并重新执行</p>
+
+<p><code>alias r=”fc -s”</code></p>
+
+<p>别名示例： 3) 在shell中显示工作目录（C-shell） </p>
+
+<p><code>alias cd ‘cd \!* &amp;&amp; set prompt=“($PWD)% ”’</code></p>
+
+<h2>九、使用shell：初始化文件</h2>
+
+<p><em>2012-08-16 10:26:36</em></p>
+
+<p>初始化文件有两种：登录文件和环境文件。</p>
+
+<p>登录文件：存放着所有希望在每次登录时自动执行的命令。</p>
+
+<p>环境文件：存放着所有希望在新shell启动时自动执行的命令。</p>
+
+<p>总而言之，登录文件、环境文件和注销文件允许您在3个不同的时间执行那些希望自动运行的命令，这3个时间分别为登录时、新shell启动时和注销时。</p>
+
+<p>| Shell | 登录文件 | 环境文件 | 注销文件                             |</p>
+
+<p>| ----- | -------- | -------- | ------------------------------------ |</p>
+
+<p>|C-shell|.login|.cshrc|.logout|</p>
+
+<p>|Tcsh|.login|.tcshrc|.cshrc|.logout|</p>
+
+<p>|Bourne Shell|.profile|无|无|</p>
+
+<p>|Korn Shell|.profile|$ENV|无|</p>
+
+<p>|Bash|.bash<em>profile|.bash</em>login|.bashrc|.bash_logout|</p>
+
+<p>环境文件的名称以rc结尾</p>
+
+<p>只有Bash的登录shell只执行登录文件，而不执行环境文件。</p>
+
+<p>Bourne Shell首先运行登录文件，而C-shell首先运行环境文件。</p>
+
+<h2>十、标准I/O：重定向和管道</h2>
+
+<p><em>2012-08-24 10:24:35</em></p>
+
+<h3>1. 标准输入、标准输出和标准错误</h3>
+
+<p>标准输入是读取数据的通用方法，标准输出用于正常输出，标准错误用于错误信息。</p>
+
+<h3>2. 重定向输出 &gt;大于号.</h3>
+
+<p>如果希望命令的输出写入到文件中，在命令的后面输入<code>&gt;</code>(大于号)，后面接文件名称即可。当以这种方式将命令输出写入到文件中，文件如不存在将创建，存在则替换。</p>
+
+<p><code>&gt;&gt;</code>告诉shell将新数据追加到文件尾部</p>
+
+<h3>3. 防止文件被重定向替换或创建</h3>
+
+<p>设置noclobber功能</p>
+
+<p>Bourne shell: <code>set -o noclobber</code>    复位：<code>set +o noclobber</code></p>
+
+<p>C-shell: <code>set noclobber</code>         复位：<code>unset noclobber</code></p>
+
+<p>临时忽略noclobber，Bourne shell用<code>&gt;|</code>来取代<code>&gt;</code>，C-shell用<code>&gt;!</code></p>
+
+<h3>4. 重写向标准输入<code>&lt;</code></h3>
+
+<p>例    <code>sort &lt; names</code></p>
+
+<p>标准输入和标准输出重定向可同时指定，如</p>
+
+<p><code>sort &lt; rawdata &gt;  report</code></p>
+
+<p>这个命令从rawdata中读取数据，排序之后输出到report中。</p>
+
+<h3>5. 文件描述符、标准错误转出重定向</h3>
+
+<p>在Unix进程中，每个输入源和输出目标都有一个唯一的数字标识，这个数字称为文件描述符( file descriptor )</p>
+
+<p>默认情况下，Unix为每个进程提供3个预定义的文件描述符，0代表标准输入，1代表标准输出，2代表标准错误。</p>
+
+<p>用法：</p>
+
+<pre><code>
+command 0&lt; inputfile
+
+command 1&gt; outfile
+
+command 2&gt; errorfile
+
+</code></pre>
+
+<p>其中command是命令，inputfile, outputfile, errorfile是文件名称，0和1可省略。</p>
+
+<p>可以在同一条命令中使用多个重定向，如：</p>
+
+<pre><code>
+sort 0&lt; rawdata 1&gt;results 2&gt;errors
+
+sort &lt; rawdata  &gt;results 2&gt;errors
+
+</code></pre>
+
+<p>有时候，可能希望在子shell中运行一小组命令或者一条命令，但又不希望启动一个全新的shell，可以将命令括在圆括号中。如：</p>
+
+<p><code>(date)</code></p>
+
+<p>位于圆括号中的这些命令被称为一个编组。使用编组和子shell最常见的原因是防止cd命令影响当前的shell，其通用格式为：</p>
+
+<p><code>(cd directory; command)</code></p>
+
+<p>对于C-shell家族，重定向标准错误的语法为</p>
+
+<p><code>command &gt;&amp; outputfile</code></p>
+
+<p>当使用&gt;&amp;时，shell将同时重定向标准输出和标准错误，所以使用</p>
+
+<p><code>(command &gt; outputfile) &gt;&amp; errorfile</code> 重定向标准错误。</p>
+
+<h3>6. 组合标准输出和标准错误</h3>
+
+<p>C-shell： <code>&gt;&amp;</code>和<code>&gt;&gt;&amp;</code></p>
+
+<p>Bourne shell: <code>command x&gt;outputfile y&gt;&amp;x</code></p>
+
+<p>对于Bash，可用<code>&amp;&gt;</code>或者<code>&gt;&amp;</code>同时定向标准输出和标准错误，但如果希望使用追加功能，则必须使用Bourne shell通用模式，如：</p>
+
+<p><code>sort &gt;&gt; output 2&gt;&amp;1</code></p>
+
+<h3>7. 抛弃输出</h3>
+
+<p>将数据输出到 /dev/null，例</p>
+
+<p><code>update &gt; /dev/null</code></p>
+
+<p>Bourne shell抛弃所有输出，如: <code>update &gt; /dev/null 2&gt;&amp;1</code></p>
+
+<p>C-shell抛弃标准错误：<code>update &gt; /dev/tty.  &gt;&amp; /dev/null</code></p>
+
+<p>特殊文件/dev/tty表示终端</p>
+
+<h3>8. 管道线</h3>
+
+<p>shell允许创建一序列命令，在这一序列命令中，一个程序的标准输出可以自动地发送给下一个程序的标准输入。当这样做时，两个程序之间的连接就是管道，而命令序列本身被称为管道线。</p>
+
+<p>将标准输出和标准错误组合在一起，然后发送给下一个程序</p>
+
+<p>Bourne shell: <code>command1 2&gt;&amp;1 | command2</code></p>
+
+<p>C-shell: <code>command1 |&amp; command2</code></p>
+
+<h3>9. 管道线分流：tee</h3>
+
+<p>有时候，可能希望将程序的输出同时发送到两个地方，可使用tee命令。tee命令的作用是从标准输入读取数据，并向标准输出和一个文件各发送一条数据。tee命令的语法为</p>
+
+<p><code>tee [-a] file…</code></p>
+
+<p>-a ( append, 追加)可以在文件末尾添加数据，而不是替换文件。</p>
+
+<h3>10. 条件执行</h3>
+
+<p>有时候，希望在前一条命令成功执行的条件下执行另一个命令，语法为 command1 &amp;&amp; command2</p>
+
+<p>有时候，希望在前一条命令没有成功执行时执行另一条命令，语法为 command1 || command2</p>
+
+<h2>十一、过滤器：简介和基本操作</h2>
+
+<p><em>2012-08-24 10:56:14</em></p>
+
+<p>在一些Linux的发行版中，除非安装了binutils### 二进制文件实用工具. 程序包，否则可能无法使用strings程序。</p>
+
+<p>过滤器就是任何能够从标准输入读取文本数据并向标准输出写入文本数据### 每次一行. 的程序。</p>
+
+<h3>1. cat</h3>
+
+<p>将标准输入的数据复制到标准输出，并且不以任何方式对数据进行特殊处理或者改变。</p>
+
+<p>应用一：快速创建小文件，例： <code>cat &gt; data</code></p>
+
+<p>标准输出(默认情况下是键盘) ，但是标准输出被定向到文件data。因此，键入的每行在按下键时被直接复制到文件中，可以输入任意多行数据，并在结束时按下^D键告诉cat不再有数据了。</p>
+
+<p>应用二：在已有文件中追加少数几行内容，例：<code>cat &gt;&gt; data</code></p>
+
+<p>应用三：显示一个短文件，例： <code>cat &lt; data</code></p>
+
+<p>应用四：显示任何文件的最后一部分</p>
+
+<p>为了方便起见，如果省略了字符，cat将直接从文件中读数据。</p>
+
+<p>cat命令的方法为</p>
+
+<p><code>cat [-bns] [file…]</code></p>
+
+<p>-n ( number,数字)选项在每行前面加一个行号。-b (blank,空白)选项和-n选项一起使用，告诉cat不要对空白行编号。-s (squeeze, 挤压)选项将多个连续空行替换为一个空白行。</p>
+
+<h3>2. 划分文件：spilt</h3>
+
+<p><code>split [-d] [-a num] [-l lines] [-file [prefix]]</code></p>
+
+<p>其中，num是创建文件名用作文件名后缀的字符或数字数量；lines是每个新文件所包含行的最大数量，不加此选项，默认为1000行；file是输入文件的名称；prefix是创建文件时使用的名称。</p>
+
+<p>默认情况下，split使用x开头的名称，后面接两个字符的后缀。后经是aa、ab、ac、ad等。如果split生成的文件多于26个，那么文件名xaz之后就是xba、xbb、xbc，依次类推。</p>
+
+<p>不想使用字母，可以加-d (digit, 数字)，split将以两个数字作后缀。不想以x开头，可指定，例： split -d –l 5000 data harley。-a选项后面加后缀中使用的字符或数字数量，例 split -d -a 3 data, 则后缀为x001、x002…</p>
+
+<h3>3. 组合文件时反转文本行的顺序：tac</h3>
+
+<p><code>tac [file…]</code></p>
+
+<h3>4. 反转字符的顺序：rev</h3>
+
+<p><code>rev [file…]</code></p>
+
+<p>假设希望每行中字符的顺序反转，并且行号反转，只需将rev的输出管道给tac即可，例： rev data | tac</p>
+
+<h3>5. 从数据开头或结尾选择数据行： head、tail</h3>
+
+<p><code>head [-n lines] [file…]</code></p>
+
+<p><code>tail [-n lines] [file…]</code></p>
+
+<p>默认是10行。</p>
+
+<h3>6. 删除数据列：colrm</h3>
+
+<p>colrm ( “column remove”，列移除)程序从标准输入读取数据，删除指定的数据列，然后将剩余的数据写入标准输出。语法为：</p>
+
+<p><code>colrm [startcol [endcol]]</code></p>
+
+<p>其中startcol和endcol指定要移除区域的开头和末尾。列的编号从1开始。</p>
+
+<h2>十二、过滤器：比较与抽取</h2>
+
+<p><em>2013-02-14 16:26:35</em></p>
+
+<h3>1. 比较任意两个文件：cmp</h3>
+
+<p>cmp的使用只有一种情形：查看两个文件是否相同。语法为：</p>
+
+<p><code>cmp file1 file2</code></p>
+
+<p>cmp可以比较任何文件。</p>
+
+<h3>2. 比较有序文本文件：comm</h3>
+
+<p>comm程序一行一行地比较两个有序的文本文件。当有两个相似的文件并且希望查看它们之间的区别时，可以使用comm程序，语法：</p>
+
+<p><code>comm [-123]file1 file2</code></p>
+
+<p>程序可以以3列显示输出：第一列包含只有第一个文件中的行，第二列包含只有第二个文件中的行，第三行包含两个文件都有的行。-1、-2、-3选项分别抑制第一列、第二列、第三列的输出。</p>
+
+<h3>3. 比较无序文本文件：diff</h3>
+
+<p>当需要比较无序文件和比较大的文件时，可以使用diff，语法：</p>
+
+<p><code>diff [-bBiqswy] [-c | -C lines| -u | -U lines] file1 file2</code></p>
+
+<p>其中，file1和file2是文本文件的名称，lines是说明上下文关系的行号。</p>
+
+<p>当比较两个相同文件时，无输出。不同时，显示一组指示，遵循它可将第一个文件修改为第二个文件。</p>
+
+<p>diff的输出使用3个单字符指示：c(change，改变)、d(delete，删除. 和a(append，追加. 。c、d、a第个字符的左边和右边都有一串行号，左边的数字指第一个文件中的行，右边指第2个文件的行。</p>
+
+<p>无论何时，当diff要求改变时，它就给出每一个文件的实际行。第一个文件中的行由一个&lt;标记，第二个文件中的行由一个&gt;标记。出于可读性考虑，两组行被若干连字符构成的线分隔开。</p>
+
+<p>-i 选项，不区分大小写. ；</p>
+
+<p>-w选项忽略所有的空白符——空格和制表符；</p>
+
+<p>-b选项，不忽略所有的空白符，而只忽略空白符数量上的区别；</p>
+
+<p>-B 忽略所有的空白行。</p>
+
+<p>其余的选项控制diff如何显示结果。-q告诉diff，当两个文件不同时，忽略所有细节。-s显示两个文件相同。</p>
+
+<h3>4. 比较文件时的输出格式：diff，sdiff</h3>
+
+<p>diff使用-c### context，上下文关系. 时，显示存在不同的实际行，同时还显示不同行的上面和下面各两行的内容。第一个文件由*星号.标记，第二个文件由-连字符. 标记。在两行之后，是每一个文件的摘录，显示应如何改变以让两个文件相同。</p>
+
+<p>-u选项，类似于-c选项的输出，但没有重复行。</p>
+
+<p>默认情况下，当对diff使用-c或者-u选项时，输出在每个不同点的上方和下方分别显示两行上下文。但是如果希望显示不同数量的上下文行，可用-C代替-c，-U代替-u，后接希望显示出的数量。例</p>
+
+<p><code>diff -C5 file1 file2</code></p>
+
+<p><code>diff -U3 file1 file2</code></p>
+
+<p>-y选项，并排输出结果。</p>
+
+<p>如果喜欢可以并排输出。还有一个特殊用途的程序sdiff可用它替代diff -y. 语法为：</p>
+
+<p><code>sdiff [-bBilsW] [-w columns] file1 file2</code></p>
+
+<p>其中file1和file2是文件名，columns是列宽；</p>
+
+<p>-l选项，重复时只显示左边的列；</p>
+
+<p>-s选项，不显示重复；</p>
+
+<p>-w选项，改变列的宽度。</p>
+
+<p>其余选项与diff相同。</p>
+
+<h3>5. 差分和补丁</h3>
+
+<p>将一个文件转换为另一个文件时的一串指示叫一个差分diff。</p>
+
+<p>使用差分以一个文件重新创建另一个文件称为应用了差分，用来应用差分的程序称为patch。</p>
+
+<h3>6. 抽取数据：cut</h3>
+
+<p>cut可以从每行中抽取特定列，也可以从每行中抽取字区域### 称为字段. ，语法为</p>
+
+<p><code>cut -c list [file...]</code></p>
+
+<p>其中list是要抽取的列表，file是输入文件的名称。</p>
+
+<p>使用列表告诉cut抽取哪些列时，可以指定一个或多个列号，用逗号分隔，列表中不含空格，还可以指定列的范围，用连字符连接。例 1,8,10-15。</p>
+
+<p>可省略-c后的空格。</p>
+
+<p>机器可读的文件数据如Candy:Charles:345. ，每行称为一个记录。每行的各个部分称为字段，而充当字段分隔符的字符称为定界符。常见的定界符有逗号、空格、制表符和空白符(制表符和空格) 。</p>
+
+<p>抽取字段的命令语法为</p>
+
+<p>cut -f list [-d delimiter] [-s] [file...]</p>
+
+<p>其中，list是抽取字段的列表，delimiter是分隔字段所用的定界符，file是输入文件的名称。</p>
+
+<p><code>cut -f 1 -d ":" /etc/passwd | sort</code> </p>
+
+<p>(-f, -d 可省略空格)</p>
+
+<h3>7. 组合数据列：paste</h3>
+
+<p>paste程序组合数据列，有极大的灵活性，可将几个文件组成一个大表，也可将连续的数据行组合起来，构建数据列。我们集中讨论paste程序最可用的特性：组合分离的文件，其它可参阅说明书页### man paste. 。</p>
+
+<p>语法： </p>
+
+<p><code>paste [-d char...] [file...]</code></p>
+
+<p>其中char是用作分隔符的字符，而file是输入文件的名称。</p>
+
+<p>默认情况下，paste在每两列实体之间放一个制表符字符，而Unix假设制表符为每8个位置一个，且以位置1为起点，即位置1,9,17,25等。为使用非制表符作定界符，可使用-d选项，后面一个括在单引号中的备选字符。如果指定不止一个定界符，paste将轮流使用定界符。</p>
+
+<h2>十三、过滤器：统计和格式化</h2>
+
+<p><em>2014-02-04 21:42:43</em></p>
+
+<h3>1. 创建行号：nl</h3>
+
+<p>nl在文本中插入行号，行号总是临时的，除非保存。命令语法为</p>
+
+<p><code>nl [-v start] [-i increment] [-b a] [-n ln|rn|rz] [file…]</code></p>
+
+<p>其中start是起始号，increment是增量，file是文件名</p>
+
+<p>-v选项改变起始编号，-i选项改变增量</p>
+
+<p>默认情况下，nl不对空行编号。为了强制编号，使用-b(body number,正文编号)选项，后面跟字母a(all,所有行)</p>
+
+<p><code>nl -b a file</code></p>
+
+<p>-n(number format)选项，后面跟一个代码控制数字格式：</p>
+
+<p>ln=左对齐，没有前导0</p>
+
+<p>rn=右对齐，没有前导0</p>
+
+<p>rz=右对齐，有前导0</p>
+
+<h3>2. 统计行、单词和字符数量：wc</h3>
+
+<p><code>wc [-clLw] [file…]</code></p>
+
+<p>默认情况下，wc的输出包含3个数字：数据中的行数、单词数和字符数。行、单词和字符LWC, “Look at woman carefully”.</p>
+
+<p>其中，“字符”就是字母、数字、标点符号、空格、制表符或新行字符；“单词”就是一串连续的字符，用空格、制表符或新行字符分隔；“行”就是以新行字符结尾的一串字符。</p>
+
+<p>-l(统计行)   –c(统计字符)      -w(统计单词)</p>
+
+<p>对于Linux来说，还有另一个选项-L，显示输入中最长行的长度。</p>
+
+<h3>3. 可视化制表符和空格</h3>
+
+<p>Vi编辑器   :set list (开)  :set nolist (关)</p>
+
+<p>Nano或pico     P (开/关)。 使用之前，必须在nano/pico初始文件中添加下述行，nanp/pico的初始文件分别为.nanorc和.picorc</p>
+
+<p><code>set whitespace “xy”</code></p>
+
+<p>其中x是希望表示一个制表符的字符，而y是显示一个空格的字符。</p>
+
+<h3>4. 将制表符转换为空格：expand</h3>
+
+<p>命令语法为</p>
+
+<p><code>expand [-i] [-t size|-t list] [file...]</code></p>
+
+<p>其中size是固定宽度制表符的大小，list是制表位列表，而file是文件名。</p>
+
+<p>expand使用Unix的默认设置，假定制表符之间有8个位置。使用-t(-tab stop,制表位)选项可以改变该设置。-t选项有两种使用方式，第一种，如果所有的制表位都是相同间距，则可以在-t后加一个数字。</p>
+
+<p>-t选项还有一种使用方式。如果希望制表位位于特定的位置上，则可以指定一串用逗号分开的多个数字。在该列表中，编号从0开始。</p>
+
+<p>当希望转换制表符时，还有一种选项可使用，只能在行的开头使用。在这种情况下，使用的就是-i(initial，初始)选项，例如：</p>
+
+<p><code>expand -i -t 4 data &gt; data-new</code></p>
+
+<h3>5. 将空格转换为制表符：unexpand</h3>
+
+<p>语法</p>
+
+<p><code>unexpand [-a] [-t size|-t list] [file...]</code></p>
+
+<p>默认只替换行首的空格，使用-a(all,全部)替换全部。</p>
+
+<h3>6. 格式化行：fold</h3>
+
+<p>fold程序处理行，fmt程序处理段落，而pr程序处理页面和列。</p>
+
+<p>fold程序可根据指示瞬间分隔行，语法为：</p>
+
+<p><code>fold [-s] [-w width] [file...]</code></p>
+
+<p>(width是新行最大宽度)</p>
+
+<p>默认情况下，fold程序在位置80处分隔行。因为在20世纪70年代，当开发Unix时，人们认为80是关于文本行的约整数。为了改变这个宽度，可使用-w(width,宽度)选项，后接希望的最大行长度。</p>
+
+<p>-s选项告诉fold不分隔单词。</p>
+
+<h3>7. 格式化段落：fmt</h3>
+
+<p>fmt的目标是将段落中的各行连接在一起，从而使段落尽可能短小和紧凑，而且不改变内容和空白符。语法为：</p>
+
+<p><code>fmt [-su] [-w width] [file...]</code></p>
+
+<p>其中width是行的最大宽度，file是文件名称。</p>
+
+<p>当fmt读取文本时，它假定段落由空行分隔。因此，一个“段落”就是一个或多个连续的文本行，不含空行。fmt按以下规则读取并格式化段落。</p>
+
+<p>行宽：使每行尽可能长，但不超过指定长度。默认为75，可用-w选项</p>
+
+<p>句子：尽可能在句末分隔行</p>
+
+<p>空白符：保留单词以及空行之间的所有缩进、空格。使用-u选项修改</p>
+
+<p>制表符：读取文件时将所有制表符转换成空格，并在最后的输出中的合适位置插入新的制表符。</p>
+
+<p>-u(uniform spacing,统一间距)选项告诉fmt减少空格，从而使单词间最多有一个空格，句末最多有两个空格，这一样式为“法式间距”。</p>
+
+<p>-s(split only,仅拆分)选项告诉fmt拆分升迁，但不连接短行。</p>
+
+<h3>8. pr</h3>
+
+<p>pr的主要功能是按页格式化文本，以使其适合于打印。语法为：</p>
+
+<p><code>pr [-dt] [+ begin[:end]] [-h text] [-l n] [-o margin] [-W width] [file...]</code></p>
+
+<p>其中begin是需要格式化的第一页，end是需要格式化的最后一面，text是标题中间的文本，n是每页的行数，margin是左边缘的大小，width是输出的宽度，file是文件。</p>
+
+<p>通常pr作为管道线的一部分，以使在将文本发送给打印机前对文本进行格式化。例：</p>
+
+<p><code>cat data1 data2 data3 | pr | lpr</code></p>
+
+<p>此命令将3个文件组合后输出发送给pr格式化，再发送给lpr进行打印### Unix中文件打印的两个基本程序是lp和lpr. 。</p>
+
+<p>默认情况下，pr通过在顶端插入一个标题，左边插入一个边缘，底部插入一个页尾来格式化页面。标题和页尾各占5行。左边缘和页尾只用于间距，所以它们是空白的。但是标题在其中间行包含信息：文件上一次修改日期和时间、文件的名称以及页号。</p>
+
+<p>pr程序假定一页只有66行，因为老式打印机使用11英寸的纸，每英寸打印6行。标题和页尾各占5行，则每页剩下56行用于单倍选中的文本。</p>
+
+<p>几乎所有暑假，当使用pr格式化页并进行打印时，默认设置已能满足需求。但是如果有需要，也可以使用几个选项修改设置。最常用的选项是-d，该选项告诉pr使用双倍行距文本。</p>
+
+<p>如果希望控制格式化哪些页，可使用 pr +begin[:end]，例：</p>
+
+<p><code>fmt essay | pr -d +3:6 | lpr</code></p>
+
+<p>如果希望指定标题中间的文本，可使用-h选项，例：</p>
+
+<p><code>fmt essay | pr -h “My Essay By Harley” | lpr</code></p>
+
+<p>为了改变每页的总行数，可以使用-l，后面加一个数字。</p>
+
+<p>为了消除标题，可使用-t选项。</p>
+
+<p>默认情况下，pr不插入左边缘，因为极为可能打印机被设置成自动创建边缘。但是，如果希望自己添加一个额外的边缘，则可以使用-o(offset,偏移)选项，后面跟额外边缘的空格数量。另外，还可以使用-W选项，改变输出的宽度( 默认为72字符) 。当使用-W选项时，太长的行会被截断。因此一定要小心不要丢失文本。</p>
+
+<p>将文本文件发送pr之前使用fold或者fmt对文本进行预处理时，最好明确指定希望的准确行宽，因为这3个程序使用不同的默认值：fmt-80字符/行，fmt-75字符/行，pr-72字符/行</p>
+
+<p>pr还可以按列格式化文本，输入数据来源于单个或多个文件。语法为：</p>
+
+<p><code>pr [-mt] [-columns] [-l lines] [-W width] [file...]</code></p>
+
+<p>其中column是输出列的数量，lines是每页的行数，width是输出的宽度，file是文件名。例：</p>
+
+<p><code>fmt -w 35 article | pr -z -l 48 &gt; article-columns</code></p>
+
+<p>默认情况下，pr使用制表符对齐各列</p>
+
+<p>pr还可以将多个文件分别格式化为单独的列。使用-m (merge,合并)选项，pr将在单独的列中输出各个文件。</p>
+
+<p>通过这种方式合并多个文件时，通常使用-t选项移除标题。</p>
+
+<p><code>pr –mt f1 f2 f3 &gt; formatted-articles</code></p>
+
+<h2>十四、过滤器：选取、排序、组合及变换</h2>
+
+<p><em>2014-02-04 23:25:20</em></p>
+
+<h3>1. 选取包含特定模式的行：grep</h3>
+
+<p>除了搜索特定的字符串外，还可以对grep使用正则表达式。语法为：</p>
+
+<p><code>grep [-cilLnrsvwx] pattern [file..]</code></p>
+
+<p>其中pattern是要搜索的模式，file是文件名。</p>
+
+<p>当指定包含标点符号或特殊字符的模式时，应将它们引用。例:</p>
+
+<p><code>grep ‘:’ info</code></p>
+
+<p>-c (count,统计)选项，该选项将显示所抽取行的数量</p>
+
+<p>-i，忽略大小写</p>
+
+<p>-n，在输出行的每一行前面写一个相对行号</p>
+
+<p>-l(list name,列举文件名)，grep不显示包含该模式的每行，而是将包含这种模式的文件名称写出来。</p>
+
+<p>-L，显示不包含匹配模式的文件</p>
+
+<p>-w，只搜索完整的单词</p>
+
+<p>-v(reverse,相反)选择不包含特定模式的所有行</p>
+
+<p>-x，查找那些完全由搜索模式构成的行</p>
+
+<p>-r(recursive,递归)选项，搜索整个目录树</p>
+
+<p>如果不希望看到无法读取某些文件的信息，可使用-s(suppress,抑制)选项</p>
+
+<p>搜索整个文件系统中的某个模式，如：</p>
+
+<p><code>grep -rs / ‘shutdown now’</code></p>
+
+<h3>2. egrep</h3>
+
+<p>原始的grep只允许“基本的正则表达式”。而后来开发的egrep支持功能更强大的“扩展正则表达式”。</p>
+
+<p>Unix系统通过命令egrep或者grep –E允许使用扩展正则表达式。</p>
+
+<h3>3. 选取以特定模式开头的行：look</h3>
+
+<p>语法</p>
+
+<p><code>look [-df] pattern file...</code></p>
+
+<p>其中pattern是搜索的模式，file是文件名。</p>
+
+<p>look不能从标准输入中读取数据，它必须从一个或多个文件中获取输入。严格地讲，look并不是过滤器，它只能用在管道开头。</p>
+
+<p>-d(dictionary,字典)选项告诉sort只考虑字母和数字。当希望look忽略标点符号和其他特殊字符时，可以使用-d选项。-f(fold,同等)选项告诉sort忽略大写字母和小写字母之间的区别。</p>
+
+<p>如果使用这两种sort选项准备数据，那么必须对look使用相同选项。例：</p>
+
+<p><code>sort –df fresh soph junior senior &gt; evaluations</code></p>
+
+<p><code>look df A evaluations</code></p>
+
+<p>选择look和grep的时机，基于简单和易用性选择。</p>
+
+<p>look还可以查找以特定模式开头的所有单词，语法为look pattern。例：</p>
+
+<p><code>look simult</code> </p>
+
+<p>输出 simultaneity simultaneous simultaneously simultaneousness</p>
+
+<h3>4. 排序数据：sort</h3>
+
+<p>sort程序可以执行两个相关的任务：排序数据以及查看数据是否已经有序。排序数据的sort程序语法为：</p>
+
+<p><code>sort [-dfnru] [-o outfile] [infile...]</code></p>
+
+<p>其中outfile是存放输出的文件的名称，infile是包含输入的文件的名称。</p>
+
+<p>sort提供了一个特殊的选项-o选项. ，允许将输出保存到任何希望的文件中。例：sort -o names names 在这个例子中，names中的原始数据将被保持，起到sort程序完成，然后输出才被写到文件中。</p>
+
+<p>默认情况下，在排序数据时，sort程序查看整行。但是，如果希望，也可以告诉sort只检查一个或多个字段，但十分复杂，查问 info sort</p>
+
+<p>-d选项，只查看字母、数字和空白符</p>
+
+<p>-f选项，忽略大小写区别</p>
+
+<p>-n选项，识别行开头或字段开头的数字，并按数字进行排序，这样的数字可以包含前导0、负号和小数点</p>
+
+<p>-r选项，按反向顺序对数据排序</p>
+
+<p>-u选项，相同行只留一行</p>
+
+<p>检查数据是否有序</p>
+
+<p><code>sort –c[u] [file]</code></p>
+
+<p>-c选项告诉sort不希望排序数据，只希望知道数据是否已经有序</p>
+
+<p>-u选项检查数据是否有重复行</p>
+
+<h3>5. ASCII码：排序序列</h3>
+
+<p>ASCII码 American Standard Code for Information Interchange.</p>
+
+<p>查看ASCII码，Linux     <code>man ascii</code>  FreeBSD  <code>less /usr/share/misc/ascii</code>  Solaris <code>less /usr/pub/ascii</code></p>
+
+<p>ASCII码排序原则：空格、数字、大写字母、小写字母—— SNUL。</p>
+
+<h3>6. 区域设置和排序序列</h3>
+
+<p>区域设locale. 是一种技术规范，描述与特定文化的用户通信时应该使用的语言和习俗。</p>
+
+<p>在Unix中，区域设置由一组标识语言、日期格式、时间格式、货币符号和其他文化习俗的环境变量所定义。特别的，有一个环境变量LC_COLLATE指定使用哪一种排序序列。</p>
+
+<p>显示所有区域设置变量的值，包括LC_COLLATE，可用locale命令。</p>
+
+<p>如果想知道自己系统支持哪些区域设置，可加-a选项。</p>
+
+<p>在美国，Unix系统默认设置为两个区域设置中的一个。两个区域设置基本上是相同的，但是有不同的排序序列，这意味着当运行sort之类的程序时，结果会根据使用的区域设置不同而有所变化。</p>
+
+<p>第一种美国区域设置基于ASCII码。这种区域设置有两个名称。它被称为C区域设置或POSIX区域设置。第二种区域设置基于美国英语，命名为en_US。</p>
+
+<p>C区域设置使用ASCII排序序列，大写字母在小写字母之前。</p>
+
+<p>en_US区域设置使用字典排序序列，小写字母和大写字母成对分组，aAbBcCdD...zZ，这种模式比较自然，因为它以字典顺序组织单词和字符。</p>
+
+<p>建议将区域设置默认为C区域设置。因为它使用传统的ASCII排序序列。从长远看，这比使用en_US区域设置和字典排序序列产生的问题更少。</p>
+
+<p>如果系统使用en<em>US区域设置，那么需要将LC</em>COLLATE环境变量改为C或POSIX。</p>
+
+<p>永久地改变环境变量，可将其放入登录文件中. </p>
+
+<p>Bourne Shell       <code>export LC_COLLATE=C</code> 或者<code>export LC_COLLATE=POSIX</code></p>
+
+<p>C-shell  <code>setenv LC_COLLATE C</code> 或者<code>setenv LC_COLLATE POSIX</code></p>
+
+<h3>7. 查找重复行：uniq</h3>
+
+<p>uniq程序可执行4项任务，消除、选取、统计重复行和选取唯一行</p>
+
+<p><code>uniq [-cdu] [infile [outfile]]</code></p>
+
+<p>其中infile是输入文件的名称，outfile是输出文件的名称。</p>
+
+<p>uniq的输入必须是有序的。</p>
+
+<p>只查看重复行，使用-d选项；</p>
+
+<p>只查看非重复行，使用-u选项；</p>
+
+<p>统计重复行出现的次数，使用-c选项。</p>
+
+<h3>8. 合并两个文件中的有序数据：join</h3>
+
+<p>join基于特定字段的值将两个有序文件组合在一起。语法</p>
+
+<p><code>join [-i] [-a1 | -V1] [-a2| -v2] [-1 field1] [-2 field2] file1 file2</code></p>
+
+<p>其中field1和field2是引用特定字段的数字，file1和file2是包含有序数据的文件的名称。</p>
+
+<p>当join读取输入时，忽略前导空白符，也就是行首的空格和制表符。</p>
+
+<p>当基于匹配的字段组合两组数据时，称为联接。用来匹配的具体字段为联接字段。默认是每个文件的第一个字段，可另指定。</p>
+
+<p>为了创建一个联接，程序需要在两个文件中查找行对，也就是说字段是拥有相同值的行。对于每个行对来说，join生成包含了部分的输出：公共联接字段值、每一个文件中行的其余字段，第二个文件中行的其余部分。</p>
+
+<p>-a1选项告诉join输出第1个文件中的所有行；-a2选项输出第2个文件中的所有行。这种输出称为外联接。</p>
+
+<p>只查看不匹配的行，则可使用-v1或者-v2选项。</p>
+
+<p>-i选项忽略大小写字母的区别。</p>
+
+<p>join假定联接字段是每个文件中的第一个字段。通过-1和-2选项可以指定使用不同的联接字段。例：</p>
+
+<p><code>join -1 3 -2 4 data statistics</code></p>
+
+<h3>9. 由偏序创建合序：tsort</h3>
+
+<p>从数学术语上讲，每个约束都称为一个偏序；困为它们只指定了一些字段的顺序。</p>
+
+<p>tsort的任务就是分析一组偏序，其中每一个偏序代表一个约束，并计算满足全部约束的合序。语法为</p>
+
+<p>tsort [file]                  file是文件的名称</p>
+
+<p>输入的每一行必须包含一对由空白符分隔的字符串，每对字符串都代表一个偏序。</p>
+
+<h3>10. 在二进制文件中搜索字符串：strings</h3>
+
+<p><code>strings [-length] [file...]</code></p>
+
+<p>其中length是要显示的字符串的最小长度，file是文件的名称，通常是一个路径名。</p>
+
+<h3>11. 转换字符：tr</h3>
+
+<p>tr(translate，转换)程序可以对字符执行3种不同的运算：将字符变为其他字符、将连续出现的字符换成一个单独的字符、删除指定的字符。语法为：</p>
+
+<p><code>tr [-cds] [set1] [set2]</code></p>
+
+<p>其中set1和set2是字符组</p>
+
+<p>如 <code>tr a A &lt; old</code>， 将所有的a替换为A</p>
+
+<p>tr还可以字符范围，例:<code>tr A-Z a-z &lt; old &gt; new</code></p>
+
+<p>范围可以是任意希望的字符组，只要它们在所使用的排序序列中形成连续序列。</p>
+
+<p>tr程序可识别的特殊代码</p>
+
+<p>+++++++++++++++++++++++++++++++++++++++</p>
+
+<p>代码     控制键  八进制码     名称</p>
+
+<p>\b          ^H          \010              退格</p>
+
+<p>\t          ^I           \011              制表符</p>
+
+<p>\n          ^J           \012              新行/换行符</p>
+
+<p>\r          ^M         \015              回车</p>
+
+<p>\          无          无                 反斜线</p>
+
+<p>++++++++++++++++++++++++++++++++++++++++</p>
+
+<p>-s选项告诉tr第一组中的多个连续字符应该替换为一个单独的字符。例：</p>
+
+<p><code>tr –s 0-9 X newdata</code></p>
+
+<p>-d选项，删除指定的字符，需要定义一组字符。例：</p>
+
+<p>tr –d ‘()’ newdata 删除所有左圆括号和右圆括号</p>
+
+<p>-c选项，匹配所有不在第一组中的字符，例：</p>
+
+<p><code>tr –c ‘ \n’ X newdata</code></p>
+
+<h3>12. sed</h3>
+
+<p>sed执行的最有用的操作就是进行简单的替换。语法为：</p>
+
+<p><code>sed [-i] command | -e command... [file...]</code></p>
+
+<p>其中command是一个sed命令，file是输入文件的名称。</p>
+
+<p>-i选项，这将导致sed程序将输出保存到一个临时文件，一旦所有的数据都成功处理，sed就将临时文件复制到原始文件。</p>
+
+<p>sed替换的命令是s，s命令的语法有两种形式：</p>
+
+<p><code>[/address | pattern/] s /search/replacement/[g]</code></p>
+
+<p>其中address是输入流中一个或多个行的地址，pattern是一个字符串，search是正则表达式，replacement是替换文本，例如 s/harley/Harley/ 该命令告诉sed搜索输入流中的每一行，查找字符串”harley”，如果找到这个字符串，则将其改变为”Harley”。默认情况下，sed只改变每一行第一个出现的匹配字符串。</p>
+
+<p>如果要改变所有匹配的字符串，则需要在命令的末尾键入后缀g，代表global；</p>
+
+<p><code>s/harley/Harley/g</code></p>
+
+<p>默认情况下，sed对数据流中的每一行都执行它的操作，为了改变这一点，可以在命令前面加上一个地址，语法为</p>
+
+<p><code>number[,number] | /regex/</code></p>
+
+<p>其中number是行号，regex是正则表达式，例：</p>
+
+<p><code>sed ‘5,10s/harley/Harley/g’ names</code></p>
+
+<p>为了方便起见，可以用字符串$指定数据的最后一行。</p>
+
+<p>另一种指定行号的方法是使用正则表达式或者被/### 斜线. 字符包围的字符串。例<code>sed ‘/ok/s/harley/Harley/g’ names</code></p>
+
+<p>sed实际上是一种文本操作编程语言的解释器。因此可以编写包含任意多个sed命令的程序，并将程序存储在文件中，每当需要时就可以运行。</p>
+
+<p>为了这样做，需要使用-f命令标识程序文件。例如，为了运行存储在文件instructions中的sed程序，并使用文件input中的数据，可以使用命令:</p>
+
+<p><code>sed -f instructions input</code></p>
+
+<p>可以指定任意多的sed命令，只要在sed命令之前使用一个-e选项。例：</p>
+
+<pre><code>sed -i -e ‘s/mon/Monday/g’ \
+
+      -e ‘s/tue/Tuesday/g’ \
+
+      -e ‘s/wed/Wednesday/g’ \
+
+      -e ‘s/thu/Thursday/g’ \
+
+      -e ‘s/fri/Friday/g’ \
+
+      -e ‘s/sat/Saturday/g’ \
+
+      -e ‘s/sun/Sunday/g’ calendar
+</code></pre>
+
+<h2>十五、正则表达式</h2>
+
+<p><em>2014-02-05 12:12:03</em></p>
+
+<h3>1. 简介</h3>
+
+<p>正则式用来指定字符串的模式。</p>
+
+<p>| 元字符  | 含义                             |
+| ------- | -------------------------------- |
+| .       | 除新行字符外，匹配任意的单个字符 |
+| ^       | 锚：匹配行的开头                 |
+| $       | 锚：匹配行的结尾                 |
+| \&lt;      | 锚：匹配单词的开头               |
+| >      | 锚：匹配单词的结尾               |
+| [list]  | 字符类：匹配list中的任何字符     |
+| [^list] | 字符类：匹配不在list中的任何字符 |
+| ()      | 组：视为一个单独的单元           |
+| \|      | 交变：匹配选项之一               |
+| \      | 引用：从字面意思解释元字符       |</p>
+
+<p>正则表达式：基本匹配</p>
+
+<h3>2. 正则表达式：重复运算符</h3>
+
+<p>| 运算符 | 含义                     |
+| ------ | ------------------------ |
+| *      | 匹配0次或多次            |
+| +      | 匹配1次或多次            |
+| ?      | 匹配0次或1次             |
+| {n}   | 限定：匹配n次            |
+| {n,}   | 限定：最少匹配n次        |
+| {0,m}  | 限定：最多匹配m次        |
+| {,m}   | 限定：最多匹配m次        |
+| {n,m}  | 最少匹配n次，最多匹配m次 |</p>
+
+<h3>3. 正则表达式：预定义字符类</h3>
+
+<p>| 类        | 含义             | 类似于（c排序序列） |
+| --------- | ---------------- | ------------------- |
+| [:lower]  | 小写字母         | a-z                 |
+| [:upper:] | 大写字母         | A-Z                 |
+| [:alpha:] | 大小定字母       | A-Za-z              |
+| [:alnum:] | 大小定字母和数字 | A-Za-z0-9           |
+| [:digit:] | 数字             | 0-9                 |
+| [:punct:] | 标点符号         |                     |
+| [:blank:] | 空格或制表符     |                     |</p>
+
+<h3>4. 基本和扩展正则表达式（BRE和ERE）</h3>
+
+<p>|扩展正则表达式|基本正则表达式  |含义|
+|---|---|---|
+|{}|\{\} |定义一个限定（花括号）|
+|()  | ()      |                            定义一个组（圆括号）|
+|?     |                                  {0,1}  |匹配0次或1次|
+|+  |                                     {1,}        |   匹配1次或多次|
+|\|                                  |无 |                                            交变：匹配选项之一|
+|[:name]  |                          无 |                                    预定义字符类|</p>
+
+<h3>5. 预定义字符类：范围</h3>
+
+<p>理解复杂正则表达式的技巧就是记住每个字符类——不管它看上去多么复杂——只表示一个单独的字符。</p>
+
+<h2>十六、显示文件</h2>
+
+<p><em>2014-02-05 12:22:01</em></p>
+
+<h3>1. 显示文件的若干程序</h3>
+
+<p>less, more</p>
+
+<p>head, tail</p>
+
+<h3>2. 二进制、八进制和十六进制（基2、基8、基16）</h3>
+
+<p>二进制前缀：0b</p>
+
+<p>八进制前缀：0o</p>
+
+<p>十六进制前缀：0x</p>
+
+<p>数字0后加小写字母</p>
+
+<h3>3. 显示二进制文件：hexdump、od</h3>
+
+<p>规范格式：用于二进制数据显示或打印，每行包含16字节。每行的左边都是以十六进制表示的偏移，中间是实际数据，也采用十六进制表示，右边是对应的ASCII值。</p>
+
+<p>hexdump命令语法</p>
+
+<p><code>hexdump -C [file..]</code></p>
+
+<p>-C(canonical,规范)，hexdump将使用适合的选项组合生成规范输出 </p>
+
+<p>od命令语法</p>
+
+<p><code>od –Ax -tx1Z [file…]</code></p>
+
+<p>-A：指定使用哪一种计数系统表示偏移值，对于规范输出来说，需要将其指定为x，将以十六进制显示偏移。</p>
+
+<p>-t：控制数据显示的方式，对于规范输出来说，需要将其指定为x1（以十六进制显示数据，每次一个字节）和z（在每行末尾显示ASCII值）。</p>
+
+<h2>十七、Vi文本编辑器</h2>
+
+<p><em>2014-02-05 15:16:52</em></p>
+
+<h3>1. 命令模式和输入模式</h3>
+
+<p>在命令模式(command mode)中，所键入的键都被解释成命令。</p>
+
+<p>在输入模式(input mode)中，键入的任何内容都直接插入到编辑模式中。</p>
+
+<p>从输入模式到命令模式，按Esc键。</p>
+
+<p><code>:set showmode</code>     显示所处模式</p>
+
+<h3>2. 启动与退出Vi</h3>
+
+<p><code>vi [-rR] [file…]</code></p>
+
+<p><code>vim -C [-rR] [file…]</code></p>
+
+<p>只读方法启动：<code>view</code>，<code>vi -R</code></p>
+
+<p>恢复数据：<code>vi -r [file...]</code></p>
+
+<p>停止vi:</p>
+
+<p>保存后退出，<code>ZZ</code>；
+不保存而退出，<code>:q!</code> （要按Return键）</p>
+
+<h3>3. vi使用屏幕的方式</h3>
+
+<p>1．如果需要，可以在vi中输入控制字符，需要按^V键，后面跟希望输入的字符。</p>
+
+<p>2．向缓冲区插入制表符^I时，不显示^I而显示多个空格。</p>
+
+<p>3．当屏幕变得错乱时，可以按^L键，重新显示各行。</p>
+
+<h3>4.使用vi命令和ex命令</h3>
+
+<p>大多数vi命令都是单字母或双字母的形式，无需按。</p>
+
+<p>所有的ex命令都以一个:（冒号）开头。在按下键前，如果发现了错误，可以：</p>
+
+<p>按下Esc键彻底取消这个命令；</p>
+
+<p>使用特殊键(^W, ^X/^V, /)。在输入模式下，也可以使用这些键。</p>
+
+<h3>5. 学习vi命令的策略</h3>
+
+<p>分类学习：</p>
+
+<p>移动光标的命令，进入输入模式的命令，进行修改的命令。</p>
+
+<h3>6. 移动光标</h3>
+
+<ol>
+<li>移动小幅位置</li>
+</ol>
+
+<p>移动1个位置：将光标向左移动一个位置；将光标句下移动一个位置；将光标向上移动一个位置；将光标向右移动一个位置；将光标向左移动一个位置；将光标向右移动一个位置。</p>
+
+<p>上下移动光标：使用-（减号）和+（加号）命令。-键将光标移动到上一行的开头，按+键将光标移动到下一行的开头。键也可移到下一行的开头。</p>
+
+<p>0（数字0）命令将光标移动到当前行的开头，$将光标移动到当前行的末尾，^（音调符号）将光标移动到当前行的第一个非空白符的字符上。</p>
+
+<p>w命令将光标移动到下一个单词的第一个字符上，e命令将光标移动到下一个单词的最后一个字符上。b命令将光标移动到上一个单词的第一个字符上。所有这3条命令都在甸个标点符号字符处停止，如不想停止，用大写字母W、E、B。</p>
+
+<ol>
+<li>大范围移动</li>
+</ol>
+
+<p>使用圆括号从一个句子跳到另一个句子：) 向前移动到下一个句子； ) 向后移动到上一个句子。</p>
+
+<p>同样，花括号命令可以从一个段落跳到另一个段落：{ 向前移动到下一个段落；} 向后移动到上一个段落。</p>
+
+<ol>
+<li>句子、段落的定义</li>
+</ol>
+
+<p>句子：一个字符串，以句号、逗号、问号或感叹号结尾，后面至少跟两个空格或一个新行字符。</p>
+
+<p>段落：以一个空白行开头井以一个空白行结束的一块文本区域。</p>
+
+<ol>
+<li>到屏幕几个部分</li>
+</ol>
+
+<p>H 到顶部     M 到中部    L 到底部</p>
+
+<ol>
+<li>重复次数</li>
+</ol>
+
+<p>为了增强光标移动命令的功能，可以通过在命令前而键入一个数字来重复执行光标移动命令。</p>
+
+<ol>
+<li>在编辑缓冲区中移动</li>
+</ol>
+
+<p>^F 上一屏</p>
+
+<p>^B 下一屏</p>
+
+<p>^D 下移半屏</p>
+
+<p>^U 上移半屏</p>
+
+<p>当在^D或^U命令前而键入数字时，该数字拥有完全不同的含义:设置这两条命令应该跳转的行数。</p>
+
+<ol>
+<li>跳转到前一位置</li>
+</ol>
+
+<p>G 跳转到编辑缓冲区的末尾</p>
+
+<p>使用``命令返回前一个位置（连续键入两个反引号）。</p>
+
+<p>''（两个单引号）跳转到前一位置行的开头。</p>
+
+<p>为了标识某一行，可以键入m，后面跟一个字母。这个字母就是这一行的名称。</p>
+
+<p>为了返回一个标记行，可以键入`(反引号)或者一个’(单引号)跟这一行的名称。</p>
+
+<ol>
+<li>搜索模式</li>
+</ol>
+
+<p>/（斜线）向下搜索</p>
+
+<p>?（问号）向上搜索</p>
+
+<p>n(next，下一个)命令采取和原始命令相同的方向进行搜索。N以相反命令搜索，可以使用正则表达式。</p>
+
+<ol>
+<li>使用行号</li>
+</ol>
+
+<p><code>:set number</code>     /   <code>:set nonumber</code></p>
+
+<p>如果行号关闭，则可以通过按下^G键查看文件位于何处。</p>
+
+<p>可以用G命令跳到指定行。只需简单地键入行号，后面跟G即可。</p>
+
+<p>也可以键入:（冒号），后面跟行号，再按键跳到指定行。</p>
+
+<p>G和1G（或者gg）命令特别有用。</p>
+
+<ol>
+<li>插入文本</li>
+</ol>
+
+<p>i 改变到输入模式:在当前光标位置前插入数据</p>
+
+<p>a 改变到输入模式:在当前光标位置后插入数据</p>
+
+<p>I 改变到输入模式:在当前行开头处插入数据</p>
+
+<p>A 改变到输入模式:在当前行末尾处插入数据</p>
+
+<p>o 改变到输入模式:在当前行下面插入一行</p>
+
+<p>O改变到输入模式:在当前行上画插入一行</p>
+
+<p>在输入模式时，有两件事要记住：</p>
+
+<p>1）使用或键删除一个字符，使用^W删除一个单词，使用^X（或^U）来删除整行。</p>
+
+<p>2）可以通过在控制字符前加一个^V来插入一个特殊字符。</p>
+
+<ol>
+<li>修改文本</li>
+</ol>
+
+<p>为了用一个字符替换另一个字符，可以键入r，后面接新字符。</p>
+
+<p>如果需要重写不止一个字符，那么首先将光标移动到希望开始替换的位置，然后键入R。您将切换到输入模式，随后键入的每个字符都将替换当前行上的一个字符。在结束键入后，可以按〈Esc〉键返回到命令模式。</p>
+
+<p>s（substitute, 替换）命令允许多个字符替换一个单个的字符。</p>
+
+<p>C命令允许替换从当前光标位置到这一行末尾的所有字符。</p>
+
+<p>替换一整行的命令：S和cc</p>
+
+<p>c后面跟一个移动光标的命令，这一次键入的内容将替换从光标当前位置到移动命令所指定的位置之间的所有字符。</p>
+
+<ol>
+<li>替换文本</li>
+</ol>
+
+<p>为了替换一个特定的模式，可以使用ex命令:s(Substitute .替换)。语法为:</p>
+
+<p><code>:s/pattern/replace/</code></p>
+
+<p>其中pattern是希望替换的模式，replace是替换文本。</p>
+
+<p>以这种方式使用:s只替换当前行上该模式的第一个匹配项。为了替换所有的匹配项，需要在该命令的末尾键入字母g。例：</p>
+
+<p><code>:s/Unix/Linux/g</code></p>
+
+<p>如果希望Vi在进行改变之前先经过您的同意，则需要在该命令的末尾添加字母c(confirm，确认)：</p>
+
+<p><code>:s/Unix/Linux/c</code></p>
+
+<p>可以将g和c组合使用。</p>
+
+<p>为了删除模式，只需将替换为空即可。<code>:s/Unix//g</code></p>
+
+<p>为了方便起见，如果不在命令的末尾使用一个c或者g，则可以省略最后的/字符。</p>
+
+<p>可以在冒号后面指定一个特定的行号，还可以使用两个用逗号分隔的行号表示范围。</p>
+
+<p>将当前行到编辑缓冲区末尾都替换。<code>:.,$s/pattern/replace/g</code></p>
+
+<p>将编辑缓冲区的开头到当前行都替换。<code>:1,.s/pattern/replace/g</code></p>
+
+<p>将所有行中的都替换。<code>:%s/pattern/replace/g</code></p>
+
+<p>符号.(点号)代表当前行，$(美元符号)代表编辑缓冲区中的最后一行，%代表编辑缓冲区中的所有行。</p>
+
+<ol>
+<li>删除文本</li>
+</ol>
+
+<p>x 删除当前光标处的字符</p>
+
+<p>X 删除光标左边的字符</p>
+
+<p>D 删除从当前光标到本行末尾的字符</p>
+
+<p>dmove 删除从当前光标到move所给位置的字符</p>
+
+<p>dd 删除当前行</p>
+
+<p>另外，还有两个ex命令:</p>
+
+<p>:lined 删除指定行</p>
+
+<p>:line,lined 删除指定范围的行</p>
+
+<ol>
+<li>撤销或重复改变</li>
+</ol>
+
+<p>u 撤销上一命令对编骤缓冲区的修改</p>
+
+<p>U 恢复当前行（仅当没有离开这一行有效）</p>
+
+<p>. 重复上一命令对编辑缓冲区的修改</p>
+
+<ol>
+<li>恢复删除</li>
+</ol>
+
+<p>每当删除一行或多行文本时，Vi都将删除内容保存在二个特殊的存储区中，这个存储区称为编号缓冲区(numbered buffer)。vi中共有9个这样的缓冲区，编一号从1至9。在任何时候，都可以将一个编号缓冲区的内容插入到编辑缓冲区中。这样做时，需要键入一个”(双引号)，后面跟着缓冲区的编号，再后跟一个p或者P命令(提醒:当处理行时，p命令在当前行的下面插入，P命令在当前行的上面插入)。</p>
+
+<p>在撤销了第一次插入之后，如果使用.(点号)命令重复插入，那么vi将自动地将缓冲区编号加1。</p>
+
+<ol>
+<li>移动文本</li>
+</ol>
+
+<p>vi总是在一个称为无名缓冲区的存储区中为上一次删除保存一份副本。在任何时候，都可以使用p和P命令将无名缓冲区中的内容复制到编辑缓冲区中。</p>
+
+<p>另一个组合命令是deep，用来调换两个单词。</p>
+
+<ol>
+<li>复制文本</li>
+</ol>
+
+<p>从一个位置向另一个位置复制文本包括3步。第一步.使用y, yy或Y命令将文本由编辑缓冲区复制到无名缓冲区中，但不删除原始文本。第二步，将光标移动到希望插入文本的位置。第三步，使用p或P命令执行插入。</p>
+
+<p>当在不删除文本的情况下将文本复制到无名缓冲区时，我们称接出(yank)了文本。y和yy命令的工作方式与d和dd命令的工作方式相同。</p>
+
+<ol>
+<li>改变字母大小写</li>
+</ol>
+
+<p>~ (波浪号)</p>
+
+<ol>
+<li>设置选项</li>
+</ol>
+
+<p><code>:set [no]option...</code></p>
+
+<p><code>:set option[=value]...</code></p>
+
+<p>显示选项 :<code>set [option [?]... |all ]</code></p>
+
+<p>显示改变了默认值的选项 :set</p>
+
+<ol>
+<li>在键入过程中自动换行</li>
+</ol>
+
+<p>可以设置wrapmargin（wm）选项，其语法为：</p>
+
+<p><code>:set wrapmargin=n</code> 其中n是从右边缘算起希望开始换行的位置</p>
+
+<p>如果希望文本行尽可能的长，则可以将选项的值设置为1：</p>
+
+<p><code>:set wm=1</code></p>
+
+<p>希望文本缩进，可以打开autoindent(ai)选项。</p>
+
+<ol>
+<li>分隔与连接行</li>
+</ol>
+
+<p>用r将空格替换为</p>
+
+<p>用J将当前行与下一行合并成一个长行</p>
+
+<ol>
+<li>复制与移动行</li>
+</ol>
+
+<p><code>x[,y]:coz</code>              [:co(copy)]</p>
+
+<p><code>x[,y]:mz</code>                    [:m(move)]</p>
+
+<p>其中x,y,z都是行号。</p>
+
+<ol>
+<li>输入shell命令</li>
+</ol>
+
+<p><code>:!command</code></p>
+
+<p><code>:!!</code>   暂停vi，执行前一条shell命令。</p>
+
+<p><code>:sh</code>   暂停vi，启动一个新shell。</p>
+
+<ol>
+<li>将文本中的数据插入到编辑缓冲区中</li>
+</ol>
+
+<p>:[line]r file</p>
+
+<p>其中line是行号，file是文件名称。</p>
+
+<ol>
+<li>将shell输出插入到编辑缓冲区中</li>
+</ol>
+
+<p>:[line]r !program    在指定行中插入程序program的输出。</p>
+
+<ol>
+<li>使用程序处理数据</li>
+</ol>
+
+<p>键入!，后面跟一个光标移动命令，再后跟程序的名称。从当前行到光标移动命令指向的位置之间的所有行都将发送给程序进行处理。</p>
+
+<p><code>n!!program</code>   在n个行上执行程序Program.</p>
+
+<ol>
+<li>将数据写入文件</li>
+</ol>
+
+<p>:w               写入原始文件</p>
+
+<p>:w file 写入file中</p>
+
+<p>:w! file  覆盖一个已有的文件file。</p>
+
+<p>:w>&gt; file             将数据追加指定的文件中</p>
+
+<ol>
+<li>切换到一个新文件</li>
+</ol>
+
+<p>:e file           编辑指定的文件</p>
+
+<p>:e!                重新编辑当前文件，忽略自动检查</p>
+
+<p>:e! file          编辑指定文件，忽略自动检查</p>
+
+<ol>
+<li>使用缩写</li>
+</ol>
+
+<p>:ab [short long] 其中short是缩写，Long是缩写的原文。</p>
+
+<p>删除一个缩写 :una short</p>
+
+<p>在任何时候，通过输入:ab命令本身可以查看所有缩写列表。</p>
+
+<ol>
+<li>使用宏</li>
+</ol>
+
+<p>允许创建自己定制的单字符命令，这些命令被称为宏。</p>
+
+<p>用:map命令创建命令，其语法为 :map [x commands]</p>
+
+<p>其中x是一个字符，commands是vi或者ee的命令序列。</p>
+
+<p>宏的名称必须是单个字符，如果使用一个早已拥有其他含义的字符，那么这个字符将失去原本含义。</p>
+
+<ol>
+<li>初始化文件.exrc .vimrc</li>
+</ol>
+
+<p>创建vi初始文件非常简单，只需插入希望每次启动vi时自动执行的ex命令即可。具体而言，应该包括所有经常使用的:set(选项)、:ab(缩写)以及:map(宏)命令。另外还可以使用:!命令来运行shell命令。</p>
+
+<h2>十八、Unix文件系统</h2>
+
+<p><em>2014-02-08 14:56:05</em></p>
+
+<h3>1. 什么是文件</h3>
+
+<p>文件是任意源，有一个名称，可以从中读取数据；或者是任意目标，有一个名称，可以向其中写入数据。</p>
+
+<p>分为3类：普通文件、目录文件和伪文件。其中伪文件有特殊文件（如设备文件）、命名管道及proc文件，并不用来存储数据。</p>
+
+<h3>2. 特殊文件</h3>
+
+<p>硬件：</p>
+
+<p>/dev/fd0             软盘</p>
+
+<p>/dev/hda            硬盘</p>
+
+<p>/dev/hda1          硬盘第1分区</p>
+
+<p>/dev/sda             SCSI硬盘</p>
+
+<p>/dev/sda1           SCSI硬盘第1分区</p>
+
+<p>/dev/lp0             打印机</p>
+
+<p>终端：</p>
+
+<p>/dev/tty              当前终端</p>
+
+<p>/dev/tty1            控制台/虚拟控制台</p>
+
+<p>/dev/pts/0          伪终端</p>
+
+<p>/dev/ttyp0          伪终端</p>
+
+<p>伪设备：</p>
+
+<p>/dev/null     放弃输出，输入不返回内容（eof）</p>
+
+<p>/dev/zero    放弃输出，输入返回null(0)</p>
+
+<p>/dev/random      随机数生成器</p>
+
+<p>/dev/urandom    随机数生成器</p>
+
+<p>我们可以使用dd创建一个全新的文件，该文件完全由null字符构成：</p>
+
+<p>dd if=/dev/zero of=temp bs=100 count=1</p>
+
+<p>if是输入文件，of是输出文件，bs是块大小，count是块的数量。因此，我们从/dev/zero向文件temp复制100字节的数据块。</p>
+
+<h3>3. 命名管道：mkfifo</h3>
+
+<p>当以这种方式（grep bash /etc/passwed | wc -l）使用管道时，管道将自动创建，当且仅当两个进程正在运行时它才存在，因此称为匿名管道。</p>
+
+<p>命名管道与匿名管道相似，它们将一个进程的输出连接到另一个进程的输入。但命名管道和匿名管道之间有两个重要的区别。首先，必须显式地创建命名管道。其次，两个进程结束时，命名管道并不会消失，除非删除。</p>
+
+<p>创建命名管道，使用mkfifo程序，语法为</p>
+
+<p><code>mkfifo [-m mode] pipe</code></p>
+
+<p>其中mode是chmod程序使用的另一种文件模式类型，pipe是管道名称。</p>
+
+<h3>4. proc文件</h3>
+
+<p>proc文件是那些提供一种简单的途径来检查多种类型的系统信息的伪文件，proc文件直接从内核获取信息，而不是使用复杂的程序搜出数据。原始的proc文件系统是为了提取进程的信息而开发的，因此命名为proc。</p>
+
+<p>所有的proc文件都存放在/proc目录中，每个进程都对应一个子目录，目录名为进程ID号。</p>
+
+<h3>5. 根目录；子目录</h3>
+
+<p>Unix文件系统的主目录为根目录。</p>
+
+<p>当指定根目录中的目录或文件的名称，需要先写一个/，后面跟名称。</p>
+
+<p>/bin       基本程序</p>
+
+<p>/boot    启动系统时所需要的文件</p>
+
+<p>/dev      设备文件</p>
+
+<p>/etc       配置文件</p>
+
+<p>/home  用户的home目录</p>
+
+<p>/lib 基本共享库，内核模块</p>
+
+<p>/lost+found  由fsck恢复的受损文件</p>
+
+<p>/media        可移动介质的挂载点</p>
+
+<p>/mnt     不能挂载在其他位置上的固定介质的挂载点</p>
+
+<p>/opt      第三方应用程序</p>
+
+<p>/proc    proc文件</p>
+
+<p>/root     root用户的home目录</p>
+
+<p>/sbin     由root用户运行的基本管理程序</p>
+
+<p>/srv       本地系统所提供服务的数据</p>
+
+<p>/tmp     临时文件</p>
+
+<p>/usr       静态数据使用的辅助文件系统</p>
+
+<p>/var      可变数据使用的辅助文件系统</p>
+
+<p>/usr/bin       非基本程序（大多数用户程序）</p>
+
+<p>/usr/include              C程序的头文件</p>
+
+<p>/usr/lib        非基本共享库</p>
+
+<p>/usr/local    本地安装程序</p>
+
+<p>/usr/sbin      由root用户执行的非基本系统程序</p>
+
+<p>/usr/share   共享系统数据</p>
+
+<p>/usr/src              源代码</p>
+
+<h3>6. 虚拟文件系统</h3>
+
+<p>基于磁盘的文件系统：</p>
+
+<p>ext3      第3代扩展文件系统（Linux）</p>
+
+<p>ext4      第4代扩展文件系统（Linux）</p>
+
+<p>FAT32    32位文件分配表文件系统（Windows）</p>
+
+<p>HFS+     层次式文件系统（Macintosh）</p>
+
+<p>ISO9660       ISO9660标准文件系统（CD-ROM）</p>
+
+<p>NTFS     NT文件系统（Windows）</p>
+
+<p>UDF      通用磁盘文件格式系统（可重写CD和DVD）</p>
+
+<h2>十九、目录操作</h2>
+
+<p><em>2014-02-08 14:57:37</em></p>
+
+<h3>1. 路径名</h3>
+
+<p>arch@archlinux /usr $ /usr/share/dict/words</p>
+
+<p>绝对路径名：从根目录开始，/usr/share/dict/words</p>
+
+<p>相对路径名：从工作目录开始，./share/dict/words</p>
+
+<p>..    父目录</p>
+
+<p>.     工作目录</p>
+
+<p>~    home目录</p>
+
+<h3>2. 在目录树中移动：cd与pwd</h3>
+
+<p>cd (change directory) 改变目录</p>
+
+<p>pwd (print working directory) 显示工作目录</p>
+
+<h3>3. 创建、删除、移动目录</h3>
+
+<p><code>mkdir [-p] directory...</code></p>
+
+<p>其中directory是希望创建目录的名称。</p>
+
+<p>规则：1.不能在同一父目录下创建相同目录；2.父目录不存在，不能创建子目录。</p>
+
+<p>使用-p选项，可以不顾规则2，创建全部结构。</p>
+
+<p><code>rmdir [-p] directory...</code></p>
+
+<p>规则：1.目录不空，无法删除；2.不能删除工作目录和根目录之间的任何目录。</p>
+
+<p><code>mv directory target</code></p>
+
+<p>其中directory是希望移动或重命名的目录，target是目标或新名称。</p>
+
+<h3>4. 使用目录栈：pushd\popd\dirs</h3>
+
+<p>在任何时候可以使用pushd命令将目录的名称压入到目录栈(directory stack)中。然后，可以使用popd命令从栈中弹出一个目录名称。此外，随时可用dirs命令显示栈的内容。这些命令的语法为：</p>
+
+<p><code>pushd [directory | +n]</code></p>
+
+<p><code>popd [+n]</code></p>
+
+<p><code>dirs [-c] [-l] [-v]</code></p>
+
+<p>其中directoty是目录的名称，n是标识符。注意：当dirs使用选项时，选项必须单独指定，不能连在一起。</p>
+
+<p>在任何时候，栈顶存放的就是工作目录的名称。</p>
+
+<p>dirs命令加-v（verbose，详细）选项，将显示栈中元素的行号。带上-l选项以后，dirs将显示home目录的完整名称。-c选项清空目录栈。</p>
+
+<p>为了使目录栈更容易使用，可以用dirs -v和pushd创建别名。</p>
+
+<p>alias d=”dirs -v"        alias p=pushd  (Bash)</p>
+
+<p>alias d ”dirs -v"        alias p pushd   (C-shell)</p>
+
+<h3>5. 列举目录内容：ls –CrR1</h3>
+
+<p>ls(list files，列举文件)程度是最常用的Unix程序之一。</p>
+
+<p>只考虑最重要的选项，ls程序语法为</p>
+
+<p><code>ls [-aCdFglrRs1] [name...]</code></p>
+
+<p>其中name是目录或文件的名称。</p>
+
+<p>ls程序的默认行为就是按字母表顺序（与区域设置相关）显示目录中各文件的名称。-r选项可以反序显示。</p>
+
+<p>如果由于某种原因，您希望ls以列的形式将输出写入到文件或管道中，可以使用-C选项。</p>
+
+<p>如果希望强制ls程序以每个文件名占一行的形式将输出写到终端，则可使用-1选项。（数字1）</p>
+
+<p>如果希望显示整个目录树，则可使用-R选项。</p>
+
+<h3>6. 查看文件类型：ls –F; ls –color (linux); file</h3>
+
+<p>使用带-F（flag，标志）选项的ls时，ls在特定类型的文件名称之后显示一个标志，*表示可执行文件，/是目录，@表示符号链接，|命名管道，没有标志的是普通文件。</p>
+
+<p>如果是Linux，那么除-F选项外，还可以用—color选项，语法为</p>
+
+<p><code>ls –color[=always | =auto |=never] [name...]</code></p>
+
+<p>auto表示ls仅当输出要在终端上显示时才使用颜色。</p>
+
+<p>file命令的语法为：<code>file [name...]</code></p>
+
+<h3>7. 掌握磁盘空间使用情况：ls –hs, du, df, quota</h3>
+
+<p>带-s(size，大小)选项的ls程序，将在文件名前面以KB为单位列出文件大小。对于Linux来说，还可以使用-h(human-readable)选项显示一个合适的单位。</p>
+
+<p>du (disk usage)可以用来显示文件的大小，语法为：</p>
+
+<p><code>du [-achs] [name...]</code></p>
+
+<p>输出多以KB为单位，为了在显示大小时显示单位，可以使用-h选项，-s选项，du将只显示总和。-c选项在输出末尾显示总量。-a选项，du将显示它所处理的每个目录和文件的大小。</p>
+
+<p>df (disk free-space)显示每个文件系统使用了多少磁盘空间，以及还有多少空间可用，-h选项以适合人类阅读的方式显示输出。</p>
+
+<p>如果系统设置有配额，则可使用quota程序检查使用及限制情况。</p>
+
+<p>-v选项显示详细信息： quota -v</p>
+
+<h3>8. 块和分配单元的查看：dumpe2fs</h3>
+
+<p>输入dumpe2fs命令，后面跟特殊文件的名称，例</p>
+
+<p><code>dumpe2fs /dev/hda1 | grep “Block size”</code></p>
+
+<h3>9. 通配符</h3>
+
+<ul>
+<li>匹配除/（斜线）字符之外的任何字符</li>
+</ul>
+
+<p>?    匹配除/（斜线）字符之外的任何单一字符</p>
+
+<p>[list]      匹配list中的任何字符</p>
+
+<p>[^list]    匹配不在list中的任何字符</p>
+
+<p>{string1 | string2}     匹配其中一个指定的字符</p>
+
+<p>[[:lower]]     小写字母</p>
+
+<p>[[:upper]]     大写字母</p>
+
+<p>[[:digit]]       数字</p>
+
+<p>[[:alnum]]    数字和字母</p>
+
+<p>[[:alpha]]     字母</p>
+
+<h3>10. 点文件显示：ls -a</h3>
+
+<p>-a选项将列出所有文件，包括隐藏文件。</p>
+
+<h3>11. 长目录列表：ls -dhltu</h3>
+
+<p>-l选项代表长列表，时间和日期是修改时间。</p>
+
+<p>使用-l选项时可用-u选项将显示文件的访问时间。</p>
+
+<p>如果希望按时间顺序显示文件，则可以使用-t选项。</p>
+
+<p>组合使用-t选项和-r选项，则按最旧到最新顺序显示。</p>
+
+<p>默认情况以字节为单位显示大小，可以-h选项显示单位。</p>
+
+<p>如果希望显示目录本身的信息，则可以使用-d选项。</p>
+
+<p>-l选项可以通过将输出管道传给过滤以众多富有想象力的方式使用。例：</p>
+
+<p><code>ls -l | grep Sep</code></p>
+
+<h3>12. 显示目录树：tree （Linux）</h3>
+
+<p><code>tree [-adfFilrst] [-L level] [directory...]</code></p>
+
+<p>其中level是树的深度，而directory是目录的名称。</p>
+
+<p>-a选项显示所有文件，-s选项显示文件大小，-F选项显示一个标识文件类型的标志，-r按相反顺序输出排序，-t按时间对输出排序。</p>
+
+<p>-d选项，只显示目录。</p>
+
+<p>-f选项显示完整的路径名。</p>
+
+<p>-i选项省略缩进。</p>
+
+<p>为了限制树的深度，可以使用-L(limit)选项，后跟一个数字。</p>
+
+<p>-l选项告诉tree跟随所有的符号连接。</p>
+
+<h2>二十、文件操作</h2>
+
+<p><em>2014-02-08 20:58:12</em></p>
+
+<h3>1. 创建文件：touch</h3>
+
+<p>touch的主要作用是在不改变文件的情况下改变文件的修改时间和访问时间。</p>
+
+<p><code>touch [-acm] [-t time] file...</code></p>
+
+<p>其中，time是时间和日期，格式为[[YY]YY]MMDDhhmm[.ss]。</p>
+
+<p>默认情况下，touch同时将修改时间和访问时间设置当前时间和日期。</p>
+
+<p>什么时候用touch命令呢？假设您准备分发一组文件，您都希望它们拥有相同的时间和日期。切换到存放这些文件的目录，然后输入touch *</p>
+
+<p>如果只希望改变修改时间，用-m选项。只改变访问时间用-a选项，使用具体时间，用-t选项。</p>
+
+<p>如果更新许多文件的修改时间或访问时间，而不希望touch创建任何新文件，则可以使用-c(nocreate)选项。</p>
+
+<p>大多数时候，不用touch创建新文件。几乎所有新文件都可在需要时被创建。</p>
+
+<h3>2. 命名文件</h3>
+
+<p>命名文件最好用小写字母、数字、点、连字符、下划线，不要轻易用大写字母。</p>
+
+<h3>3. 复制文件</h3>
+
+<p>`cp [-ip] file1 file2``</p>
+
+<p><code>cp [-ip] file... directory</code></p>
+
+<p>-i选项告诉cp在替换已有文件之前进行询问，-p选项保持目标文件和源文件拥有相同的修改时间、访问时间和权限。</p>
+
+<p>将目录复制到另一个目录中：</p>
+
+<p><code>cp -r [-ip] directory1... directoty2</code></p>
+
+<p>-r递归选项，复制整个子树。</p>
+
+<h3>4. 移动文件</h3>
+
+<p><code>mv [-if] file... directory</code></p>
+
+<p><code>mv [-if] oldname newname</code></p>
+
+<p>-i选项，替换前询问；-f选项，强制替换，忽略权限。</p>
+
+<h3>5. 删除文件</h3>
+
+<p><code>rm [-fir] file...</code></p>
+
+<p>-f，强制；-i，交互；-r，递归。</p>
+
+<h3>6. 权限</h3>
+
+<p>权限与用户相关，包括读、写、执行权限。</p>
+
+<p>查看用户标识id： group [userid]</p>
+
+<p>Write=2，Read=4，Excute=1</p>
+
+<p>改变权限：<code>chmod [mode] file...</code></p>
+
+<p>当Unix创建新文件时，将根据文件的类型为文件指定下述模式：</p>
+
+<p>666：不可执行的普通文件；777：可执行的普通文件；777：目录</p>
+
+<p>在这一初始模式，Unix再减去用户掩码（user mask）值。用户掩码是一种模式，由自己设置，表明希望限制的权限。设置用户掩码时，需使用umask命令。</p>
+
+<p><code>umask [mode]</code>，其中mode指定希望限制的权限。</p>
+
+<h3>7. 清空文件内容：shred</h3>
+
+<p>shred程序的目的就是多次覆盖硬盘已有的数据，从而使世界上最昂贵的数据恢复设备也难以记录硬盘磁面的磁迹。语法为：</p>
+
+<p>shred –fvuz [file...]</p>
+
+<p>-v选项，在处理过程中显示处理消息。</p>
+
+<p>默认情况下，shred将覆盖数据多次，并且使文件包含的是随机的数据。当然随机数据只是说明文件已经被“粉碎”。为了隐藏这一点，可以使用-z选项，以告诉shred在结束任务时将文件填充为0。进一步讲，如果希望在处理之后删除文件，则可以使用-u选项。最后，为了忽略受限制的文件权限，可以使用-f选项。</p>
+
+<h3>8. 链接的概念:stat, ls –i</h3>
+
+<p>当Unix创建文件时，Unix完成两件事情。第一，Unix在存储设备上保留一块空间用来存储数据。第二，Unix创建一个称为索引节点(index node)或i节点〔i-nod")的结构，来存放文件的基本信息。</p>
+
+<p>在Linux系统上，可以通过使用stat命令，方便地查看某个特定文件的i节点的内容：</p>
+
+<p><code>stat filename</code></p>
+
+<p>文件系统将所有的i节点存放在一个大表中，这个表称为i节点表(inade table)。在i节点表中，每个i节点由所谓的索引（index number)或i节点号〔"i-number"〕表示。</p>
+
+<p>为了显示文件的i节点号，可以使用带-i选项的ls命令。</p>
+
+<p>文件名和i节点之间的连接称为链接。从概念上讲，链接将文件名和文件本身连接起来。</p>
+
+<p>文件的唯一标识符是其i节点号，而不是它的名称。</p>
+
+<h3>9. 创建新链接：ln</h3>
+
+<p><code>ln file newname</code> （为单个文件创建新链接）</p>
+
+<p>其中file是一个已有普通文件的名称，newname是希望赋予连接的名称。</p>
+
+<p><code>ln file... directory</code> （为一个或多个普通文件创建新链接，并把链接放在指定目录）</p>
+
+<h3>10. 符号链接：<code>ln –s</code></h3>
+
+<p>在创建不同文件系统中的目录或文件的链接时，需要创建符号链接（symbol link）。这样做时，需要使用带-s选项的ln命令。符号链接包含的不是文件的i节点号，而是原文件的路径名。</p>
+
+<p>一般将常规的链接文件称为硬链接，而将符号链接称为软链接。</p>
+
+<h3>11. 查找与Unix命令相关的文件：whereis</h3>
+
+<p>whereis程序用来查看与特定Unix命令相关的文件：二进制（可执行）文件、源文件和文档文件。语法为：</p>
+
+<p><code>whereis [-bms] command...</code></p>
+
+<p>只显示可执行的路径名，可用-b选项；对于联机手册中的文件，可使用-m；对于源文件，可以-s选项。</p>
+
+<h3>12. 通过搜索数据库查看文件：locate</h3>
+
+<p>locate程序的任务是搜索一个特殊的数据库（该数据库中包含所有可公共访问的文件的路径名），查找所有包含特定模式的路径名。该数据库自动维护并定期更新。</p>
+
+<p><code>locate [-bcirS] pattern...</code></p>
+
+<p>-r选项，使用正则表达式；</p>
+
+<p>-c选项，显示匹配文件的总数；</p>
+
+<p>-i选项，忽略大小写；</p>
+
+<p>-b选项，匹配路径名的最后一部分；</p>
+
+<p>-S(statistics，统计)选项，显示系统上locate数据库的信息。</p>
+
+<h3>13. 通过搜索目录树查找文件：find</h3>
+
+<p>为了运行find，需要指定3件事件（按下述顺序）：目录路径、测试和动作。</p>
+
+<p>find程序的一般语法为：</p>
+
+<p><code>find path... test... action...</code></p>
+
+<p>一旦输入该命令，find就会遵循一个3个步骤的处理过程。</p>
+
+<p>(1}路径：find所做的第一件事情就是查找每个路径，检查这些路径所表示的整个目录树，包括所有的子目录。</p>
+
+<p>(2)测试：对于遇到的每个文件，find应用指定的测试条件。这里的目标就是创建一个满足指定标准的所有文件的列表。</p>
+
+<p>(3)动作：一旦搜索完成，find就对列表中的每个文件执行指定的操作。</p>
+
+<p>测试：</p>
+
+<p>文件名：</p>
+
+<p>-name pattern, 包含pattern的文件名；</p>
+
+<p>-iname pattern, 包含pattern的文件名（不区分大小写）；</p>
+
+<p>文件特征：</p>
+
+<p>-type [df]，文件类型d=目录，f=普通文件；</p>
+
+<p>-perm mode，文件权限为mode；</p>
+
+<p>-user userid，属主为userid；</p>
+
+<p>-group groupid，组为groupid；</p>
+
+<p>-size [-+]n[cbkMG]，大小为n[字符（字节）、块、千字节、兆字节、吉字节]</p>
+
+<p>-empty，空文件（大小为0）</p>
+
+<p>访问时间、修改时间：</p>
+
+<p>-amin [-+]n，n分钟之前访问；</p>
+
+<p>-anewer file，file文件之后访问；</p>
+
+<p>-atime [-+]n，n天之前访问；</p>
+
+<p>-cmin [-+]n，n分钟之前状态改变；</p>
+
+<p>-cnewer file，file文件之后状态改变；</p>
+
+<p>-ctime [-+]n，n天之前状态改变；</p>
+
+<p>-mmin [-+]n，n分钟之前修改；</p>
+
+<p>-mtime [-+]n，n天之前修改；</p>
+
+<p>-newer file，file文件之后修改。</p>
+
+<p>当以块大小、千字节、兆字节、吉字节测量文件的大小时，find假定的是磁盘空间。以字节为单位测试文件时，find假定的是文件的内容。</p>
+
+<p>当需要时，可以通过在测试前面加一个!运算符对测试求反，但需引用。</p>
+
+<p>动作</p>
+
+<p>-print，将路径名写入到标准输出；</p>
+
+<p>-fprint，同-print，将输出写入到file中；</p>
+
+<p>-ls，显示长目录列表；</p>
+
+<p>-fls file，同-ls，将输出写入到file中；</p>
+
+<p>-delete，删除文件；</p>
+
+<p>-exec command { } \; ，执行command，{}指示匹配的文件名；</p>
+
+<p>-ok command { } \;，同-exec，但在运行command前进行确认。</p>
+
+<h3>14. 处理查找到的文件：xargs</h3>
+
+<p>-exec是为每个文件生成一条单独的命令，当生成大量的文件时，可以将find的输出管道传送给一个特殊的程序，这个程序叫xargs，语法为：</p>
+
+<p><code>xargs [-prt] [-i string] [command [argument...]]</code></p>
+
+<p>其中command是希望运行的命令的名称，string是占位符，argument是从标准输入读取的参数。</p>
+
+<p>有时候希望在同一命令中使用参数多次发送给xargs，可以使用-i选项，这将允许使用{ }占位符，占位符将在命令运行之前被参数取代。例：</p>
+
+<p><code>find . –type -f | xargs –i echo { } { }</code></p>
+
+<p>-p选项，在运行命令前请求许可；</p>
+
+<p>-t选项，查看生成的命令；</p>
+
+<p>-r选项告诉xargs如果没有输入参数，则不运行命令。</p>
+
+<p>xargs可以和任何程序一起使用，只要这些程序可以向xargs提供作为参数使用的字符串即可。</p>
+
+<h2>二十一、进程和作业控制</h2>
+
+<p><em>2014-02-08 21:22:16</em></p>
+
+<h3>1. 创建延迟：sleep</h3>
+
+<p>sleep internal [s|m|h|d]</p>
+
+<p>其中，internal是延迟的时长。</p>
+
+<h3>2. 作业控制</h3>
+
+<p>jobs，显示作业列表</p>
+
+<p>ps，显示进程列表</p>
+
+<p>suspend，挂起当前shell</p>
+
+<p>fg，将作业移到前台</p>
+
+<p>bg，将作业移到后台</p>
+
+<p>^Z，挂起当前前台作业</p>
+
+<p>kill，向作业发送信号，默认情况下终止作业</p>
+
+<p>变量：</p>
+
+<p><code>echo $$</code> 显示当前shell的PID</p>
+
+<p><code>echo $!</code> 显示上一条移至后台的命令的PID</p>
+
+<p>终端设置：</p>
+
+<p><code>stty tostop</code> 挂起试图向终端写数据的后台作业</p>
+
+<p><code>stty -tostop</code> 关闭tostop</p>
+
+<h3>3. ps程序</h3>
+
+<p><code>ps [-aefFly] [-p pid] [-u userid]</code></p>
+
+<p>-a显示与任何用户标识和终端相关的进程；</p>
+
+<p>-e 显示所有进程；</p>
+
+<p>-f 显示父进程ID；</p>
+
+<p>-ly 显示所有正在运行的进程及其状态。</p>
+
+<h3>4. 监视系统进程：top</h3>
+
+<p><code>top [-d delay] [-n count] [-p pid[,pid]...]</code></p>
+
+<p>其中delay是刷新间隔（单位为秒），count是刷新的总时间量，pid是进程ID。</p>
+
+<h3>5. 显示进程树：pstree\ptree</h3>
+
+<p><code>pstree [-aAcGnpu] [pid | userid]</code></p>
+
+<p>其中pid是进程ID，userid是用户标识。</p>
+
+<p>-c选项，不压缩</p>
+
+<p>-A选项强制用ASCII字符</p>
+
+<p>-G选项强制使用行绘制字符</p>
+
+<p>-p选项显示每个进程的PID</p>
+
+<p>-n选项按Pid排序</p>
+
+<p>-a显示每个进程的整个命令行</p>
+
+<p>-u标识当子进程以不同于父进程的用户标识运行时所发生的改变</p>
+
+<h3>6. 杀死进程：kill</h3>
+
+<p><code>kill [-q] pid... | jobid...</code></p>
+
+<p>查看全部信号列表，可输入kill –l</p>
+
+<h3>7. 降低优先级使用程序：nice</h3>
+
+<p><code>nice [-n adjustment] command</code></p>
+
+<p>其中adjustment是一个数值，command是希望运行的命令。</p>
+
+<p>只能对后台程序使用nice.</p>
+
+<h3>8. 改变现有进程的优先数：renice</h3>
+
+<p>renice niceness –p processid</p>
+
+<p>其中niceness是nice值，processid是进程ID。</p>
+
+<h2>二十二、忘记root口令的解决方法</h2>
+
+<p><em>2014-02-08 21:27:36</em></p>
+
+<p>用livecd光盘启动系统，挂载根目录分区，然后改变口令。</p>
+
+<p>例：</p>
+
+<pre><code># mkdir /mnt/tmp
+# mount /dev/sda /mnt/tmp
+# chroot /mnt/tmp passwd
+</code></pre>
+
+<p>这一命令将/mnt/tmp作为文件系统的根，所以使用的口令文件是位于硬盘上的口令文件（/mnt/tmp/etc/shadow）</p>
+
+<p>通过这种方式，可以改变root口令（硬盘上的root口令）。</p>
+
+<h2>二十三、Unix &amp; Linux 命令分类表</h2>
+
+<p><em>2014-02-08 21:37:23</em></p>
+
+<p>​        <strong>本附录（[美]</strong><a href="http://book.douban.com/search/%E5%93%88%E6%81%A9"><strong>哈恩</strong></a><strong>：《Unix&amp;Linux大学教程》附录B，</strong><a href="http://book.douban.com/search/%E5%BC%A0%E6%9D%B0%E8%89%AF"><strong>张杰良</strong></a><strong>译，清华大学出版社，2010年）摘要描述了书中所涉及的143个Unix使命，并且按照命令的类别进行排列。在每个名称的后面，方括号中的数字表示讨论该命令的参考章号。</strong></p>
+
+<p>​        <strong>Unix命令分类如下：</strong></p>
+
+<p>| <strong>构建块</strong>   | <strong>文件</strong>           | <strong>系统工具</strong>       |
+| ------------ | ------------------ | ------------------ |
+| <strong>命令工具</strong> | <strong>文件系统</strong>       | <strong>终端</strong>           |
+| <strong>比较文件</strong> | <strong>登录和注销</strong>     | <strong>文本格式化</strong>     |
+| <strong>目录</strong>     | <strong>进程和作业控制</strong> | <strong>工具</strong>           |
+| <strong>显示数据</strong> | <strong>Shell</strong>          | <strong>用户和用户标识</strong> |
+| <strong>文档资料</strong> | <strong>选择数据</strong>       | <strong>变量</strong>           |
+| <strong>编辑</strong>     |                    |                    |</p>
+
+<p><strong>构建块</strong></p>
+
+<p>| <strong>cat [16]</strong>   | <strong>组合文件，将标准输入复制到标准输出</strong> |
+| -------------- | -------------------------------------- |
+| <strong>tee [15]</strong>   | <strong>将标准输入复制到文件和标准输出</strong>     |
+| <strong>xargs [25]</strong> | <strong>使用来自标准输入的参数运行命令</strong>     |</p>
+
+<p><strong>命令工具</strong></p>
+
+<p>| <strong>alias [13]</strong>   | <strong>创建/显示别名</strong>                    |
+| ---------------- | ------------------------------------ |
+| <strong>type [8]</strong>     | <strong>定位命令：显示命令的路径名或别名</strong> |
+| <strong>unalias [25]</strong> | <strong>删除别名</strong>                         |
+| <strong>whence [8]</strong>   | <strong>定位命令：显示命令的路径名或别名</strong> |
+| <strong>which [8]</strong>    | <strong>定位命令：显示命令的路径名或别名</strong> |</p>
+
+<p><strong>比较文件</strong></p>
+
+<p>| <strong>cmp [17]</strong>   | <strong>比较两个文件</strong>               |
+| -------------- | ------------------------------ |
+| <strong>comm [17]</strong>  | <strong>比较两个有序文件，显示区别</strong> |
+| <strong>diff [17]</strong>  | <strong>比较两个文件，显示区别</strong>     |
+| <strong>sdiff [17]</strong> | <strong>比较两个文件，显示区别</strong>     |</p>
+
+<p><strong>目录</strong></p>
+
+<p>| <strong>cd [24]</strong>    | <strong>改变工作目录</strong>                       |
+| -------------- | -------------------------------------- |
+| <strong>chmod [25]</strong> | <strong>改变文件或目录的文件权限</strong>           |
+| <strong>dirs [24]</strong>  | <strong>显示/清除目录栈中的内容</strong>            |
+| <strong>du [24]</strong>    | <strong>显示文件使用的磁盘空间量</strong>           |
+| <strong>file [24]</strong>  | <strong>分析文件的类型</strong>                     |
+| <strong>ls [24/25]</strong> | <strong>显示文件的各种类型的信息</strong>           |
+| <strong>mkdir [24]</strong> | <strong>创建目录</strong>                           |
+| <strong>mv [24/25]</strong> | <strong>移动或重命名文件或目录</strong>             |
+| <strong>popd [24]</strong>  | <strong>改变工作目录，将名称从目录栈中弹出</strong> |
+| <strong>pushd [24]</strong> | <strong>改变工作目录，将名称压入到目录栈中</strong> |
+| <strong>pwd [24]</strong>   | <strong>显示工作目录的路径名</strong>               |
+| <strong>rm [25]</strong>    | <strong>删除文件或目录</strong>                     |
+| <strong>rmdir [24]</strong> | <strong>删除空目录</strong>                         |
+| <strong>tree [24]</strong>  | <strong>显示目录树的图表</strong>                   |</p>
+
+<p><strong>显示数据</strong></p>
+
+<p>| <strong>cat [16]</strong>     | <strong>组合文件，将标准输入复制到标准输出</strong> |
+| ---------------- | -------------------------------------- |
+| <strong>echo [12]</strong>    | <strong>将参数写到标准输出</strong>                 |
+| <strong>head [16/21]</strong> | <strong>从数据的开头选择行</strong>                 |
+| <strong>hexdump [21]</strong> | <strong>显示二进制(非文本)文件</strong>             |
+| <strong>less [21]</strong>    | <strong>分页程序：每次一屏地显示数据</strong>       |
+| <strong>more [21]</strong>    | <strong>分布程序：每次一屏地显示数据</strong>       |
+| <strong>od [21]</strong>      | <strong>显示二进制(非文本)文件</strong>             |
+| <strong>print [12]</strong>   | <strong>将参数写到标准输出</strong>                 |
+| <strong>tail [21]</strong>    | <strong>在数据的末尾选择行</strong>                 |</p>
+
+<p><strong>文档资料</strong></p>
+
+<p>| <strong>apropos [9]</strong> | <strong>基于键盘搜索显示命令名</strong>          |
+| --------------- | ----------------------------------- |
+| <strong>info [9]</strong>    | <strong>从Info参考系统中显示文件</strong>        |
+| <strong>man [9]</strong>     | <strong>显示Unix联机参考手册的页面</strong>      |
+| <strong>whatis [9]</strong>  | <strong>为指定命令显示一行摘要信息</strong>      |
+| <strong>xman [9]</strong>    | <strong>基于GUI，显示联机参考手册的页面</strong> |</p>
+
+<p><strong>编辑</strong></p>
+
+<p>| <strong>sed [19]</strong>  | <strong>非交互式文本编辑</strong>           |
+| ------------- | ------------------------------ |
+| <strong>vi [22]</strong>   | <strong>vi文本编辑器</strong>               |
+| <strong>view [22]</strong> | <strong>以只读模式启动vi文本编辑器</strong> |
+| <strong>vim [22]</strong>  | <strong>vim文本编辑器</strong>              |</p>
+
+<p><strong>文件</strong></p>
+
+<p>| <strong>chmod [25]</strong>   | <strong>改变文件或目录的文件权限</strong>          |
+| ---------------- | ------------------------------------- |
+| <strong>cp [25]</strong>      | <strong>复制文件；复制目录</strong>                |
+| <strong>du [24]</strong>      | <strong>显示文件使用的磁盘空间量</strong>          |
+| <strong>find [25]</strong>    | <strong>在目录树中搜索文件，处理结果</strong>      |
+| <strong>ln [25]</strong>      | <strong>创建文件的一个新链接</strong>              |
+| <strong>locate [25]</strong>  | <strong>搜索文件</strong>                          |
+| <strong>ls [24/25]</strong>   | <strong>显示文件的各种类型的信息</strong>          |
+| <strong>mkfifo [23]</strong>  | <strong>创建命名管道</strong>                      |
+| <strong>mv [24/25]</strong>   | <strong>移动或重命名文件或目录</strong>            |
+| <strong>rm [25]</strong>      | <strong>删除文件或目录</strong>                    |
+| <strong>shred [25]</strong>   | <strong>安全删除文件</strong>                      |
+| <strong>stat [25]</strong>    | <strong>显示i节点的信息</strong>                   |
+| <strong>touch [25]</strong>   | <strong>更新文件的访问/修改时间；创建文件</strong> |
+| <strong>umask [25]</strong>   | <strong>在文件创建过程中设置文件模式掩码</strong>  |
+| <strong>whence [8]</strong>   | <strong>定位命令：显示命令的路径名或别名</strong>  |
+| <strong>whereis [25]</strong> | <strong>查看与命令关联的文件</strong>              |</p>
+
+<p><strong>文件系统</strong></p>
+
+<p>| <strong>df [24]</strong>       | <strong>显示文件系统已使用/可使用的磁盘空间</strong> |
+| ----------------- | --------------------------------------- |
+| <strong>dumpe2fs [24]</strong> | <strong>显示超块的文件系统信息</strong>              |
+| <strong>mount [23]</strong>    | <strong>挂载文件系统</strong>                        |
+| <strong>umount [23]</strong>   | <strong>卸载文件系统</strong>                        |</p>
+
+<p><strong>登录与注销</strong></p>
+
+<p>| <strong>login [4]</strong>  | <strong>终止登录shell并初始化一个新登录</strong> |
+| -------------- | ----------------------------------- |
+| <strong>logout [4]</strong> | <strong>终止登录shell</strong>                   |
+| <strong>passwd [4]</strong> | <strong>改变登录口令</strong>                    |</p>
+
+<p><strong>进程与作业控制</strong></p>
+
+<p>| <strong>&amp; [26]</strong>       | <strong>在后台挂起程序</strong>               |
+| ---------------- | -------------------------------- |
+| <strong>^Z [26]</strong>      | <strong>挂起(暂停)前台程序</strong>           |
+| <strong>fg [26]</strong>      | <strong>将作业移到前台</strong>               |
+| <strong>suspend [26]</strong> | <strong>挂起(暂停)shell</strong>              |
+| <strong>jobs [26]</strong>    | <strong>显示作业信息</strong>                 |
+| <strong>bg [26]</strong>      | <strong>将作业移至后台</strong>               |
+| <strong>ps [26]</strong>      | <strong>显示进程信息</strong>                 |
+| <strong>top [26]</strong>     | <strong>显示使用最多CPU的进程的数据</strong>  |
+| <strong>prstat [26]</strong>  | <strong>显示进程的动态信息</strong>           |
+| <strong>pstree [26]</strong>  | <strong>显示进程树图表</strong>               |
+| <strong>ptree [26]</strong>   | <strong>显示进程树图表</strong>               |
+| <strong>fuser [26]</strong>   | <strong>识别使用指定文件的进程</strong>       |
+| <strong>kill [26]</strong>    | <strong>终止进程；给进程发送信号</strong>     |
+| <strong>nice [26]</strong>    | <strong>使用指定的调度优先级运行程序</strong> |
+| <strong>renice [26]</strong>  | <strong>改变已运行程序的调度优先级</strong>   |</p>
+
+<p><strong>Shell</strong></p>
+
+<p>| <strong>! [13]</strong>       | <strong>重新执行历史列表中的命令</strong>              |
+| ---------------- | ----------------------------------------- |
+| <strong>!! [13]</strong>      | <strong>重新执行历史列表中的最后一条命令</strong>      |
+| <strong>^^ [13]</strong>      | <strong>替换/重新执行历史列表中的最后一条命令</strong> |
+| <strong>bash [1]</strong>     | <strong>Bash shell</strong>                            |
+| <strong>bindkey [13]</strong> | <strong>设置命令行编辑模式</strong>                    |
+| <strong>chsh [11]</strong>    | <strong>改变默认shell</strong>                         |
+| <strong>csh [11]</strong>     | <strong>C-shell</strong>                               |
+| <strong>exit [4]</strong>     | <strong>退出shell</strong>                             |
+| <strong>fc [13]</strong>      | <strong>显示/重新执行历史列表中的命令</strong>         |
+| <strong>history [13]</strong> | <strong>显示历史列表中的命令</strong>                  |
+| <strong>ksh [11]</strong>     | <strong>Korn shell</strong>                            |
+| <strong>sh [11]</strong>      | <strong>Bourne shell</strong>                          |
+| <strong>tcsh [11]</strong>    | <strong>Tcsh shell</strong>                            |</p>
+
+<p><strong>选择数据</strong></p>
+
+<p>| <strong>cut [17]</strong>     | <strong>提取指定的数据列/字段</strong>    |
+| ---------------- | ---------------------------- |
+| <strong>grep [19]</strong>    | <strong>选择包含指定模式的行</strong>     |
+| <strong>head [16/21]</strong> | <strong>从数据的开头选择行</strong>       |
+| <strong>look [19]</strong>    | <strong>选择以指定模式开关的行</strong>   |
+| <strong>strings [19]</strong> | <strong>在二进制文件中搜索字符串</strong> |
+| <strong>tail [16/21]</strong> | <strong>在数据的末尾选择行</strong>       |</p>
+
+<p><strong>系统工具</strong></p>
+
+<p>| <strong>dmesg [6]</strong>    | <strong>显示启动信息(Linux)</strong>            |
+| ---------------- | ---------------------------------- |
+| <strong>hostname [8]</strong> | <strong>显示系统的名称</strong>                 |
+| <strong>init [6]</strong>     | <strong>切换到另一个运行级别</strong>           |
+| <strong>reboot [6]</strong>   | <strong>重新启动计算机</strong>                 |
+| <strong>shutdown [6]</strong> | <strong>关闭计算机</strong>                     |
+| <strong>su [6]</strong>       | <strong>改变到超级用户或另一个用户标识</strong> |
+| <strong>sudo [6]</strong>     | <strong>以超级用户运行一条单独的命令</strong>   |
+| <strong>uname [8]</strong>    | <strong>显示操作系统的名称</strong>             |
+| <strong>uptime [8]</strong>   | <strong>显示系统已经运行的时间</strong>         |</p>
+
+<p><strong>终端</strong></p>
+
+<p>| <strong>lock [8]</strong> | <strong>临时锁定终端</strong>                 |
+| ------------ | -------------------------------- |
+| <strong>stty [7]</strong> | <strong>设置/显示终端的操作选项</strong>      |
+| <strong>tty [23]</strong> | <strong>显示表示终端的特殊文件的名称</strong> |</p>
+
+<p><strong>文本格式化</strong></p>
+
+<p>| <strong>colrm [16]</strong>    | <strong>删除指定的数据行</strong>                   |
+| ----------------- | -------------------------------------- |
+| <strong>expand [18]</strong>   | <strong>将制表符更改为空格</strong>                 |
+| <strong>fmt [18/22]</strong>   | <strong>格式化段落，从而使它们看上去更漂亮</strong> |
+| <strong>fold [18]</strong>     | <strong>将长行格式化为较短的行</strong>             |
+| <strong>join [19]</strong>     | <strong>基于共同字段组合数据列</strong>             |
+| <strong>nl [18]</strong>       | <strong>在文本中添加行号</strong>                   |
+| <strong>paste [17]</strong>    | <strong>组合数据列</strong>                         |
+| <strong>pr [18]</strong>       | <strong>将文本格式化成页面或列</strong>             |
+| <strong>rev [16]</strong>      | <strong>数据每行中的字符反向排列</strong>           |
+| <strong>sed [19]</strong>      | <strong>非交互式文本编辑</strong>                   |
+| <strong>split [16]</strong>    | <strong>将大文件分隔成小文件</strong>               |
+| <strong>tac [16]</strong>      | <strong>组合文件的同时将文本行的顺序反转</strong>   |
+| <strong>tr [19]</strong>       | <strong>改变或删除选择的字符或字符串</strong>       |
+| <strong>unexpand [18]</strong> | <strong>将空格改变为制表符</strong>                 |
+| <strong>uniq [19]</strong>     | <strong>移除文本文件中相临的重复行</strong>         |</p>
+
+<p><strong>工具</strong></p>
+
+<p>| <strong>bc [8]</strong>       | <strong>任意精度，易于使用的计算器</strong>     |
+| ---------------- | ---------------------------------- |
+| <strong>cal [8]</strong>      | <strong>显示一个日历</strong>                   |
+| <strong>calender [8]</strong> | <strong>从calender文件中显示当前提醒</strong>   |
+| <strong>date [8]</strong>     | <strong>显示时间和日期</strong>                 |
+| <strong>dc [8]</strong>       | <strong>任意精度，基于栈的计算器</strong>       |
+| <strong>leave [8]</strong>    | <strong>在指定的时间显示一个提醒</strong>       |
+| <strong>sleep [26]</strong>   | <strong>延迟一个指定的时间间隔</strong>         |
+| <strong>sort [19]</strong>    | <strong>排序数据；查看数据是否是有序的</strong> |
+| <strong>tsort [19]</strong>   | <strong>由偏序创建一个全序</strong>             |
+| <strong>wc [18]</strong>      | <strong>统计行数、单词数和字符数</strong>       |</p>
+
+<p><strong>用户和用户标识</strong></p>
+
+<p>| <strong>group [25]</strong>   | <strong>显示用户标识所属的组</strong>         |
+| ---------------- | -------------------------------- |
+| <strong>id [25]</strong>      | <strong>显示当前用户标识和组标识</strong>     |
+| <strong>last [4]</strong>     | <strong>查看用户标识上一次登录时间</strong>   |
+| <strong>quota [8/24]</strong> | <strong>显示系统资源限额</strong>             |
+| <strong>users [8]</strong>    | <strong>显示当前登录到系统的用户标识</strong> |
+| <strong>w [8]</strong>        | <strong>显示用户标识和活动进程的信息</strong> |
+| <strong>who [8]</strong>      | <strong>显示当前登录的用户标识的信息</strong> |
+| <strong>whoami [8]</strong>   | <strong>显示当前登录的用户标识</strong>       |</p>
+
+<p><strong>变量</strong></p>
+
+<p>| <strong>echo [12]</strong>      | <strong>将参数写到标准输出</strong>            |
+| ------------------ | --------------------------------- |
+| <strong>env [12]</strong>       | <strong>显示环境变量</strong>                  |
+| <strong>export [12]</strong>    | <strong>将shell变量输出到环境中</strong>       |
+| <strong>print [12]</strong>     | <strong>将参数写到标准输出</strong>            |
+| <strong>printenv [12］</strong> | <strong>显示环境变量</strong>                  |
+| <strong>set [12]</strong>       | <strong>设置/显示shell选项和shell变量</strong> |
+| <strong>setenv [12]</strong>    | <strong>设置/显示环境变量</strong>             |
+| <strong>unset [12]</strong>     | <strong>删除shell变量</strong>                 |
+| <strong>unsetenv [12]</strong>  | <strong>删除环境变量</strong>                  |</p>
+
+<h2>二十四、vi命令小结</h2>
+
+<p><em>2014-02-08 21:43:11</em></p>
+
+<p>本附录包含的是本书(哈恩:《<a href="http://book.douban.com/search/%E5%BC%A0%E6%9D%B0%E8%89%AF">Unix&amp;Linux大学教程</a>》附录B，[张杰良]译，清华大学出版社，2010年)中所涉及的全部<strong>vi</strong>命令，更多的信息请参见第22章，这一章详细讨论了<strong>vi</strong>。</p>
+
+<ul>
+<li>启动</li>
+</ul>
+
+<p><strong>vi</strong> <em>file</em>                              启动<strong>vi</strong>，编辑指定的文件</p>
+
+<p><strong>vi –R</strong> <em>file</em>                          以只读模式启动<strong>vi</strong>，编辑指定的文件</p>
+
+<p><strong>view</strong> <em>file</em>                            以只读模式启动<strong>vi</strong>，编辑指定的文件</p>
+
+<p><strong>vim</strong> <em>file</em>                             启动vim，编辑指定的文件</p>
+
+<p><strong>vim –C</strong> <em>file</em>                         以兼容模式启动<strong>vi</strong></p>
+
+<ul>
+<li>停止</li>
+</ul>
+
+<p><strong>:q</strong> <strong>!</strong>                              不保存数据而停止</p>
+
+<p><strong>ZZ</strong>                               保存数据并停止</p>
+
+<p><strong>:wq</strong>                              保存数据并停止</p>
+
+<p><strong>:x</strong>                               保存数据并停止</p>
+
+<ul>
+<li>系统故障后恢复</li>
+</ul>
+
+<p><strong>vi –r</strong>                           显示可以恢复的文件的名称</p>
+
+<p><strong>vi –r</strong> <em>file</em>                         启动<strong>vi</strong>，恢复指定的文件</p>
+
+<ul>
+<li>修订键</li>
+</ul>
+
+<p><code>&lt;Backspace&gt;/&lt;Delete&gt;</code>                 删除键入的最后一个字符</p>
+
+<p>^<strong>W</strong>                               删除键入的最后一个单词</p>
+
+<p>^<strong>X/^U</strong>                            删除整行</p>
+
+<p><strong>:map g 1G</strong>                        定义宏，使<strong>g</strong>和<strong>1G</strong>拥有相同效果</p>
+
+<p><strong>:</strong>n                                   跳转到行号n</p>
+
+<p><strong>:1</strong>                               跳转到编辑缓冲区中的第一行</p>
+
+<p><strong>:$</strong>                               跳转到编辑缓冲区中的最后一行</p>
+
+<ul>
+<li>插入</li>
+</ul>
+
+<p><strong>i</strong>                                切换到插入模式：在光标位置前插入</p>
+
+<p><strong>a</strong>                                切换到插入模式：在光标位置后插入</p>
+
+<p><strong>I</strong>                                切换到插入模式：在当前行开头插入</p>
+
+<p><strong>A</strong>                                切换到插入模式：在当前行末尾插入</p>
+
+<p><strong>o</strong>                                切换到插入模式：打开当前行下面一行</p>
+
+<p><strong>O</strong>                                切换到插入模式：打开当前行上面一行</p>
+
+<p><code>&lt;Escape&gt;</code>                             离开插入模式，切换到命令模式</p>
+
+<ul>
+<li>进行修改</li>
+</ul>
+
+<p><strong>r</strong>                                    只替换1个字符（不进入输入模式）</p>
+
+<p><strong>R</strong>                                键入中进行替换</p>
+
+<p><strong>s</strong>                                通过插入替换1个字符</p>
+
+<p><strong>C</strong>                                    通过插入从当前光标替换到行末</p>
+
+<p><strong>cc</strong>                                   通过插入替换整个当前行</p>
+
+<p><strong>S</strong>                                    通过插入替换整个当前行</p>
+
+<p><strong>c</strong> <em>move</em>                                通过插入从当前光标替换至<em>move</em>指定的位置</p>
+
+<p>~                                    改变字母的大小写</p>
+
+<ul>
+<li>替换模式</li>
+</ul>
+
+<p><strong>:s</strong> <em>/pattern/replace/</em>                  替换当前行</p>
+
+<p><strong>:</strong> <em>line<strong></em>s0</strong> <em>/pattern/replace/</em>              替换指定行</p>
+
+<p><strong>:</strong> <em>line,line<strong></em>s</strong> <em>/pattern/replace/</em>         替换指定范围</p>
+
+<p><strong>:</strong>%<strong>s</strong> <em>/pattern/replace/</em>                 替换全部行</p>
+
+<p>在命令的末尾，使用c可以用来请求确认，<strong>g</strong>(global，全局)可以用来替换每行的全部匹配结果。指定行号时，可以使用一个实际数字，也可以使用<strong>.</strong>(句号)表示当前行，或者<strong>$</strong>(美元符号）表示编辑缓冲区的最后一行。数字<strong>1</strong>表示编辑缓冲区中的第一行。</p>
+
+<ul>
+<li>撤销或重复改变</li>
+</ul>
+
+<p><strong>u</strong>                                     撤销修改编辑缓冲区的上一条命令</p>
+
+<p><strong>U</strong>                                     恢复当前行</p>
+
+<p><strong>.</strong>                                 重复修改编辑缓冲区的上一条命令</p>
+
+<ul>
+<li>分隔和连接行</li>
+</ul>
+
+<p><strong>r</strong><code>&lt;Return&gt;</code>                           将当前行分隔成两行(将字符替换成新行字符)</p>
+
+<p><strong>J</strong>                                     将当前行与下一行连接成一个长行</p>
+
+<p><strong>:set wm=</strong>n                            在离右边缘n个位置时自动换行</p>
+
+<ul>
+<li>删除</li>
+</ul>
+
+<p><strong>x</strong>                                     删除光标处字符</p>
+
+<p><strong>X</strong>                                 删除光标左边的字符</p>
+
+<p><strong>D</strong>                                 从当前光标删除到行尾</p>
+
+<p><strong>dd</strong>                                删除整个当前行</p>
+
+<p><strong>d</strong> <em>move</em>                                从当行光标删除到<em>move</em>所指定的位置</p>
+
+<p><strong>dG</strong>                               从当前行删除到编辑缓冲区的末尾</p>
+
+<p><strong>d1G</strong>                              从当行前删除到编辑缓冲区的开头</p>
+
+<p><em>line<strong></em>d</strong>                             删除指定的行</p>
+
+<p><strong>:</strong> <em>line,line<strong></em>d</strong>                       删除指定的范围</p>
+
+<ul>
+<li>删除：有用的组合</li>
+</ul>
+
+<p><strong>dw</strong>                               删除1个单词</p>
+
+<p><strong>d</strong>n<strong>w</strong>                              删除<em>n</em>个单词</p>
+
+<p><strong>d</strong>n<strong>W</strong>                              删除<em>n</em>个单词(忽略标点符号)</p>
+
+<p><strong>db</strong>                               向后删除1个单词</p>
+
+<p><strong>d</strong>n<strong>)</strong>                              删除<em>n</em>个句子</p>
+
+<p><strong>d</strong>n<strong>}</strong>                               删除<em>n</em>个段落</p>
+
+<p><strong>dG</strong>                               从当前行删除到编辑缓冲区的末尾</p>
+
+<p><strong>dgg</strong>                              从当前行删除到编辑缓冲区的开头</p>
+
+<p><strong>d1G</strong>                              从当前行删除到编辑缓冲区的开头</p>
+
+<ul>
+<li>复制上一次删除</li>
+</ul>
+
+<p><strong>p</strong>                                复制缓冲区：插入到当前光标后面/下面</p>
+
+<p><strong>P</strong>                                    复制缓冲区：插入到当前光标前面/上面</p>
+
+<p><strong>xp</strong>                               调换两个字符</p>
+
+<p><strong>deep</strong>                             调换两个单词(从第一个单词的左边开始)</p>
+
+<p><strong>ddp</strong>                              调换两行</p>
+
+<p><strong>''1pu.u.u...</strong>                     恢复某一次删除</p>
+
+<ul>
+<li>复制与移动行</li>
+</ul>
+
+<p><strong>:</strong> <em>line<strong></em>co</strong> <em>target</em>                        复制指定的行，在目标下面插入</p>
+
+<p><strong>:</strong> <em>line,line<strong></em>co</strong> <em>target</em>                   复制指定的范围，在目标下面插入</p>
+
+<p><strong>:</strong> <em>line<strong></em>m</strong> <em>target</em>                         移动指定的行，在目标下面插入</p>
+
+<p><strong>:</strong> <em>line,line<strong></em>m</strong> <em>target</em>                    移动指定的范围，在目标下面插入</p>
+
+<ul>
+<li>接出</li>
+</ul>
+
+<p><strong>y</strong> <em>move</em>                                将当前光标接出到<em>move</em></p>
+
+<p><strong>yy</strong>                               接出整个当前行</p>
+
+<ul>
+<li>接出：有用的组合</li>
+</ul>
+
+<p><strong>yw</strong>                               接出1个单词</p>
+
+<p><strong>y</strong> <em>n<strong></em>w</strong>                              接出<em>n</em>个单词</p>
+
+<p><strong>y</strong> <em>n<strong></em>W</strong>                              接出<em>n</em>个单词(忽略标点符号)</p>
+
+<p><strong>yb</strong>                               向后接出1个单词</p>
+
+<p><strong>y</strong> <em>n<strong></em>)</strong>                              接出<em>n</em>个句子</p>
+
+<p><strong>y</strong> <em>n<strong></em>}</strong>                              接出<em>n</em>个段落</p>
+
+<p><strong>yG</strong>                              从当前行接出到编辑缓冲区的末尾</p>
+
+<p><strong>ygg</strong>                             从当前行接出到编辑缓冲区的开头</p>
+
+<p><strong>y1G</strong>                                 从当前行接出到编辑缓冲区的开头</p>
+
+<ul>
+<li>执行shell命令</li>
+</ul>
+
+<p><strong>:!</strong> <em>command</em>                           暂停<strong>vi</strong>，执行指定的shell命令</p>
+
+<p><strong>:!!</strong> pause <strong>vi,</strong>                    执行上一条shell命令</p>
+
+<p><strong>:sh</strong>                             暂停<strong>vi</strong>，启动一个shell</p>
+
+<p><strong>:!csh</strong>                           暂停<strong>vi</strong>，启动一个新的C-Shell</p>
+
+<ul>
+<li>向编辑缓冲区内读入数据</li>
+</ul>
+
+<p><strong>:</strong> <em>line</em> <strong>r</strong> <em>file</em>                         在指定行后插入<em>file</em> 的内容</p>
+
+<p><strong>:r</strong> <em>file</em>                             在当前行后插入<em>file</em> 的内容</p>
+
+<p><strong>:</strong> <em>line<strong></em>r</strong> <strong>!</strong> <em>command</em>                     在指定行后插入<em>command</em>的输出</p>
+
+<p><strong>:r</strong> <strong>!</strong> <em>command</em>                         在当前行后插入<em>command</em>的输出</p>
+
+<p><strong>:r</strong> <strong>!look</strong> <em>pattern</em>                   插入以指定模式开头的内容</p>
+
+<ul>
+<li>使用shell命令处理数据</li>
+</ul>
+
+<p><em>n</em> <strong>!!</strong> <em>command</em>                         对第<em>n</em>行数据执行<em>command</em></p>
+
+<p><strong>!</strong> <em>move command</em>                       对当前光标至<em>move</em>所指定的位置的数据执行<em>command</em></p>
+
+<p><strong>!</strong> <em>move</em> <strong>fmt</strong>                        格式化当前光标到<em>move</em>所指定的行</p>
+
+<ul>
+<li>写入数据</li>
+</ul>
+
+<p><strong>:w</strong>                                  将数据写入到原始文件</p>
+
+<p><strong>:w</strong> <em>file</em>                             将数据写入到指定文件</p>
+
+<p><strong>:w</strong>&gt;&gt; <em>file</em>                           将数据追加到指定文件</p>
+
+<ul>
+<li>在编辑过程中改变文件</li>
+</ul>
+
+<p><strong>:e</strong> <em>file</em>                             编辑指定的文件</p>
+
+<p><strong>:e<em>*</strong>!</em>* <em>file</em>                            编辑指定的文件，忽略自动检查</p>
+
+<ul>
+<li>缩写</li>
+</ul>
+
+<p><strong>:ab</strong> <em>short long</em>                      设置<em>short</em>到<em>long</em>的缩写</p>
+
+<p><strong>:ab</strong>                             显示当前的缩写</p>
+
+<p><strong>:una</strong> <em>short</em>                              取消缩写<em>short</em></p>
+
+<h2>写在最后</h2>
+
+<p><em>2014-02-11 16:34:26</em></p>
+
+<p>学习笔记断断续续写了一年多，这是出乎我意料的。不过总算完结了，算是给自己有个交代，了了一个心愿。这也意味着我的Linux之旅的结束，我想，是时候该告个别了。其实，早就应该说声告别了，现在算是有些晚了。</p>
+
+<p>大一那年，在计算机文化基础的课上，助教告诉我们有个Linux系统叫做Ubuntu，还当场演示了它的3D桌面。我立即被吸引住了，意识到这一个新世界，我应当去探索。于是，在没有电脑的条件下，我就用院里实验室的机器偷偷装了一遍。等买上电脑了，就开始在自己的笔记本上实验，边看书边学习边实践。</p>
+
+<p>最先是Wubi安装，更新后极容易进不去系统。后来索性在硬盘上开辟一块新分区，专门用来装Ubuntu。安装、配置、使用、放弃、换发行版，周而复始，来来回回折腾过好一阵子。Ubuntu、Arch Linux、Hackintosh、FreeBSD、Debian、LFS、Gentoo，这些个发行版都尝试过，但总的使用时间还不如我安装、配置的时间长。总是有不满足的地方，总有一些难以容忍的不足。</p>
+
+<p>折腾的同时，我也常常找一些书来看。最好的一本书，还是《Unix &amp; Linux大学教程》。作者本人就是Unix和Linux界的泰斗，介绍非常系统，还会讲一些历史和文化的东西，写得很有趣味。其次是《鸟哥的Linux私房菜》，风格与上一本类似，受欧美教材的影响比较深，写得细致生动。</p>
+
+<p>我很欣赏Unix和Linux文化，如开源精神和KISS原则。然而，随着了解的深入，我却发现，Unix和Linux可能过分注重了用户控制的主动权，而把用户的体验放在一边。这实际上违背了KISS原则。所谓KISS原则，就是要让做事变得更简单，简单得甚至有些愚蠢。如果拿这一条原则来衡量的话，Unix和Linux系统应当变得更加简单易用，而不是像现在这样复杂。</p>
+
+<p>曾有一篇著名的文章《完全用Linux工作》，作者王垠极度推崇Linux和Unix，对Windows不屑一顾。他主张用Mutt收发邮件，用fvwm作桌面，觉得那样就能充分掌握电脑。我也曾追随过他的脚步，使用过他推荐的一些软件，但最终放弃了。不是我不会使用这些工具，而是我觉得不值得，不值得放弃更友好的界面而去适应这些古老的工具。王垠后来在新浪开了博客，他的态度也变了，承认Windows和Mac的好，承认他写文章的时候过于偏激。不过他的话引起了一些人的不满，他们认为王垠不再是他们心中的“斗士”，非常失望。大概是他们的话过于激烈吧，王垠最终把博客的文章都删除了。(注：<a href="http://www.yinwang.org/">王垠博客地址</a>)</p>
+
+<p>我还用过XeLatex，这是“所见非所得”的排版软件，不少人很推崇。我在使用Ubuntu的时候用到过。确如人们所说，用它的时候，你会更专注于写作本身，而不用分心去关心格式。这确实是一个非常好的软件，但它并不普及，难以和Word抗衡，只能用来自娱自乐。</p>
+
+<p>促使我放弃Unix和Linux最大的原因，就是成本太高。安装、配置、使用都需要学习，这是一个新世界。需要耗费大量的时间在上面，但是收益呢？像我这样专注于办公的用户，收益非常小。我想，与其花这么多时间放在学习使用一种新系统上，还不如将时间花在更有价值的事情上，比如写作、外语、理财和音乐。</p>
+
+<p>有句俗话说，“工欲善其事，必先利其器”。但若是过分专注于工具上，而忘却自己使用工具的目的，就有些买椟还珠的意味了。这就好比，一直在向前走，却忘记了自己为何向前。真正要有的态度应当是得鱼忘筌，目标达成了就是顺利。</p>
+
+<p>我对Linux有四点不满足：</p>
+
+<p>一是中文字体显示。除了Ubuntu，我用过的其他系统的中文显示都太难看，和Windows差了十万八千里。</p>
+
+<p>二是办公套件。Microsoft的doc和docx格式是事实上的标准，其他office套件应该认识到这一点。先从兼容性入手，再想其他办法占领市场。另外，其他office套件里的演示软件过于粗糙，做出的效果也难以令人满意。</p>
+
+<p>三是Flashplayer。要么插件崩溃，要么显示出问题，要么系统死机，不知为何。</p>
+
+<p>四是软件太少。</p>
+
+<p>除此以外，我想Unix和Linux的系统都是极好的。但它更适合勤奋的专业人士来使用，像我这样的懒人，还是老老实实用Windows，还是不要再有什么执念了。</p>
+
+<p>谨以这24篇笔记纪念我的Linux之旅！</p>
+
+  </div>
+</body>
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106796420-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+  gtag('config', 'UA-106796420-1');
+</script>
+
+</html>
